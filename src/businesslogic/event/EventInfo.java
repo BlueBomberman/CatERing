@@ -9,6 +9,7 @@ import persistence.ResultHandler;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Map;
 
 public class EventInfo implements EventItemInfo {
     private int id;
@@ -17,7 +18,10 @@ public class EventInfo implements EventItemInfo {
     private Date dateEnd;
     private int participants;
     private User organizer;
-    //private User chef;
+    private User chef;
+
+    private enum state{NUOVO,INCORSO,TERMINATO,ANNULLATO};
+    private state currentState;
 
     private ObservableList<ServiceInfo> services;
 
@@ -50,6 +54,9 @@ public class EventInfo implements EventItemInfo {
                 e.participants = rs.getInt("expected_participants");
                 int org = rs.getInt("organizer_id");
                 e.organizer = User.loadUserById(org);
+                int ch = rs.getInt("chef_id");
+                e.chef = User.loadUserById(ch);
+                e.currentState = state.NUOVO; //TODO: PRENDI DAL DB
                 all.add(e);
             }
         });
@@ -62,5 +69,22 @@ public class EventInfo implements EventItemInfo {
 
     public boolean hasService(ServiceInfo service){
         return services.contains(service);
+    }
+
+    public void setChef(User chef) {
+        this.chef = chef;
+        //TODO:NOTIFY
+    }
+
+    public User getChef() {
+        return chef;
+    }
+
+    public ServiceInfo getServiceById(int i) {
+        for(ServiceInfo ser: services){
+            if(ser.getId() == i)
+                return ser;
+        }
+        return null;
     }
 }

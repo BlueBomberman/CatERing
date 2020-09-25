@@ -81,6 +81,29 @@ public class Menu {
 
     }
 
+    public static Menu loadMenuById(int id) {
+            if (loadedMenus.containsKey(id)) return loadedMenus.get(id);
+
+            Menu load = new Menu();
+            String menuQuery = "SELECT * FROM Menus WHERE id='"+id+"'";
+            PersistenceManager.executeQuery(menuQuery, new ResultHandler() {
+                @Override
+                public void handle(ResultSet rs) throws SQLException {
+                    load.id = rs.getInt("id");
+                    load.title = rs.getString("title");
+                    int id= rs.getInt("owner_id");
+                    load.owner = User.loadUserById(id);
+                    load.published = rs.getBoolean("published");
+                }
+            });
+            if (load.id > 0) {
+                loadedMenus.put(load.id, load);
+                load.sections = Section.loadSectionsFor(load.id);
+                load.freeItems = MenuItem.loadItemsFor(load.id, 0);
+            }
+            return load;
+    }
+
     public boolean getFeatureValue(String feature) {
         return this.featuresMap.get(feature);
     }

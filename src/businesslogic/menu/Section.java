@@ -35,7 +35,6 @@ public class Section {
         this.sectionItems.add(mi);
     }
 
-
     public void updateItems(ObservableList<MenuItem> newItems) {
         ObservableList<MenuItem> updatedList = FXCollections.observableArrayList();
         for (int i = 0; i < newItems.size(); i++) {
