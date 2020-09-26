@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ui.kitchenTask.KitchenTaskManagement"
-            prefHeight="400.0" prefWidth="600.0">
 
-</AnchorPane>
+<BorderPane prefHeight="360.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.KitchenTaskManagement">
+   <top>
+      <Label prefHeight="45.0" prefWidth="662.0" text="User Info" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <fx:include source="service-list.fxml" />
+   </center>
+</BorderPane>
