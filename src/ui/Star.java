@@ -19,6 +19,8 @@ public class Star {
     public void initialize() {
     }
 
-    public void beginKitchenTaskManagement(ActionEvent actionEvent) {
+    @FXML
+    public void beginKitchenTaskManagement() {
+
     }
 }
