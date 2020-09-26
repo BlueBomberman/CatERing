@@ -1,9 +1,11 @@
 package ui.kitchenTask;
 
 import businesslogic.CatERing;
+import businesslogic.kitchenTask.SummarySheet;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import ui.Main;
 import ui.menu.MenuContent;
@@ -50,5 +52,11 @@ public class KitchenTaskManagement {
         }
 
         //TODO: Caricare elenco eventi
+    }
+
+    public void showCurrentSheet() {
+        taskContentPaneController.initialize();
+        containerPane.getChildren().remove(serviceList);
+        containerPane.getChildren().add(taskContentPane);
     }
 }
