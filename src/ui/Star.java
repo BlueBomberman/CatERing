@@ -1,5 +1,6 @@
 package ui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class Star {
@@ -16,5 +17,8 @@ public class Star {
     }
 
     public void initialize() {
+    }
+
+    public void beginKitchenTaskManagement(ActionEvent actionEvent) {
     }
 }
