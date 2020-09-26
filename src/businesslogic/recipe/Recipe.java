@@ -32,6 +32,10 @@ public class Recipe extends KitchenDuty{
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String toString() {
         return name;
     }

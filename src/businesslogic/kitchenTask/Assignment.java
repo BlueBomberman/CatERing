@@ -31,7 +31,23 @@ public class Assignment {
         this.ready = false;
     }
 
+    public static void saveNewAssignment(SummarySheet sh,Assignment as, int pos) {
+        String assInsert = "INSERT INTO catering.Assignments (id_duty, id_sheet,position,ready) VALUES (?,?,?,?);";
+        PersistenceManager.executeBatchUpdate(assInsert, 1, new BatchUpdateHandler() {
+            @Override
+            public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
+                ps.setInt(1, as.getDuty().getId());
+                ps.setInt(2, sh.getId());
+                ps.setInt(3, pos);
+                ps.setBoolean(4, as.ready);
+            }
 
+            @Override
+            public void handleGeneratedIds(ResultSet rs, int count) throws SQLException {
+                as.id = rs.getInt(1);
+            }
+        });
+    }
 
 
     //getter
@@ -59,6 +75,39 @@ public class Assignment {
         return duty;
     }
 
+    //setter
+
+    public void setReady(boolean ready) {
+        this.ready = ready;
+    }
+
+    public void setEstTime(String estTime) {
+        this.estTime = estTime;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setCook(User cook) {
+        this.cook = cook;
+    }
+
+    public void setShift(Shift shift) {
+        this.shift = shift;
+    }
+
+    public void setDuty(KitchenDuty duty) {
+        this.duty = duty;
+    }
 
     public static void saveAllNewAssignments(int id, ObservableList<Assignment> assignments) {
         String assInsert = "INSERT INTO catering.Assignments (ready, position, id_duty, id_sheet) VALUES (?, ?, ?, ?);";

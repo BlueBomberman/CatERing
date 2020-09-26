@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane prefHeight="384.0" prefWidth="594.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.ServiceList">
    <center>
       <GridPane BorderPane.alignment="CENTER">
@@ -25,7 +24,7 @@
          <children>
             <BorderPane prefHeight="231.0" prefWidth="187.0" style="-fx-border-color: #aaaaaa; -fx-border-width: 1;">
                <center>
-                  <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <ListView fx:id="eventList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </BorderPane.margin>
@@ -57,7 +56,7 @@
                   </Label>
                </top>
                <center>
-                  <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <ListView fx:id="serviceList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </BorderPane.margin>
@@ -79,7 +78,7 @@
    <bottom>
       <FlowPane alignment="CENTER" columnHalignment="CENTER" hgap="15.0" prefHeight="61.0" prefWidth="594.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="33.0" prefWidth="143.0" text="Assegna Compito">
+            <Button mnemonicParsing="false" onAction="#assegnaCompitoPressed" prefHeight="33.0" prefWidth="143.0" text="Assegna Compito">
                <font>
                   <Font size="15.0" />
                </font>

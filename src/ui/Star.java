@@ -21,6 +21,6 @@ public class Star {
 
     @FXML
     public void beginKitchenTaskManagement() {
-
+        mainPaneController.startKitchenTaskManagement();
     }
 }

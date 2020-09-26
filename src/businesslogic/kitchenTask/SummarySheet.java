@@ -1,13 +1,18 @@
 package businesslogic.kitchenTask;
 
+import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
 import businesslogic.menu.Menu;
 import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
+import businesslogic.recipe.KitchenDuty;
+import businesslogic.recipe.Recipe;
+import businesslogic.user.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.BatchUpdateHandler;
 import persistence.PersistenceManager;
+import persistence.ResultHandler;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,6 +40,15 @@ public class SummarySheet {
                 assignments.add(new Assignment(mi.getItemRecipe()));
             }
         }
+    }
+
+    public SummarySheet(int id_sum,ServiceInfo service){
+        this.service = service;
+        this.assignments = FXCollections.observableArrayList();
+
+        openSummarySheet(id_sum);
+
+
     }
 
     public String toString() {
@@ -78,5 +92,40 @@ public class SummarySheet {
 
     public int getId() {
         return id;
+    }
+
+    public ObservableList<Assignment> getAssignments() {
+        return assignments; //TODO: AGGIUNGI ROBA PER NON MODIFICARE
+    }
+
+    public Assignment addAssignment(KitchenDuty duty) {
+        Assignment ass = new Assignment(duty);
+        assignments.add(ass);
+        return ass;
+    }
+
+    private void openSummarySheet(int id_ss){
+        String query = "SELECT * FROM Assignments a, recipes r WHERE (a.id_duty = r.id) AND id_sheet = "+ id_ss;
+        PersistenceManager.executeQuery(query, new ResultHandler() {
+            @Override
+            public void handle(ResultSet rs) throws SQLException {
+                Recipe r = new Recipe(rs.getString("name"));
+                r.setId(rs.getInt("id_duty"));
+
+                Assignment as = new Assignment(r);
+                as.setId(rs.getInt("a.id"));
+                as.setCook(User.loadUserById(rs.getInt("id_cook")));
+                as.setEstTime(rs.getString("estTime"));
+                as.setQuantity(rs.getString("quantity"));
+                as.setReady(rs.getBoolean("ready"));
+                as.setPosition(rs.getInt("position"));
+
+               // as.setShift("id_shift"); //TODO: Fare object di shift
+
+
+                assignments.add(as);
+
+            }
+        });
     }
 }

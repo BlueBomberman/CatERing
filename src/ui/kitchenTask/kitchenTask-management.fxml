@@ -4,16 +4,15 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane prefHeight="360.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.KitchenTaskManagement">
+<BorderPane fx:id="containerPane" prefHeight="360.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.KitchenTaskManagement">
    <top>
-      <Label prefHeight="45.0" prefWidth="662.0" text="User Info" BorderPane.alignment="CENTER">
+      <Label fx:id="userLabel" prefHeight="45.0" prefWidth="662.0" text="User Info" BorderPane.alignment="CENTER">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
    </top>
    <center>
-      <fx:include source="service-list.fxml" />
+      <fx:include fx:id="serviceList" source="service-list.fxml" />
    </center>
 </BorderPane>

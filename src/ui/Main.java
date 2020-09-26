@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import ui.kitchenTask.KitchenTaskManagement;
 import ui.menu.MenuManagement;
 
 import java.io.IOException;
@@ -26,6 +27,9 @@ public class Main {
     BorderPane menuManagementPane;
     MenuManagement menuManagementPaneController;
 
+    BorderPane kitchenTaskManagementPane;
+    KitchenTaskManagement kitchenTaskManagementPaneController;
+
     public void initialize() {
         startPaneController.setParent(this);
 
@@ -34,6 +38,16 @@ public class Main {
             menuManagementPane = loader.load();
             menuManagementPaneController = loader.getController();
             menuManagementPaneController.setMainPaneController(this);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        loader = new FXMLLoader(getClass().getResource("kitchenTask/kitchenTask-management.fxml"));
+        try {
+            kitchenTaskManagementPane = loader.load();
+            kitchenTaskManagementPaneController = loader.getController();
+            kitchenTaskManagementPaneController.setMainPaneController(this);
 
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -50,6 +64,19 @@ public class Main {
         AnchorPane.setBottomAnchor(menuManagementPane, 0.0);
         AnchorPane.setLeftAnchor(menuManagementPane, 0.0);
         AnchorPane.setRightAnchor(menuManagementPane, 0.0);
+
+    }
+
+    public void startKitchenTaskManagement() {
+        CatERing.getInstance().getUserManager().fakeLogin("Lidia");
+
+        kitchenTaskManagementPaneController.initialize();
+        paneContainer.getChildren().remove(startPane);
+        paneContainer.getChildren().add(kitchenTaskManagementPane);
+        AnchorPane.setTopAnchor(kitchenTaskManagementPane, 0.0);
+        AnchorPane.setBottomAnchor(kitchenTaskManagementPane, 0.0);
+        AnchorPane.setLeftAnchor(kitchenTaskManagementPane, 0.0);
+        AnchorPane.setRightAnchor(kitchenTaskManagementPane, 0.0);
 
     }
 

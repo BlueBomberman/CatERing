@@ -5,6 +5,7 @@ import businesslogic.UseCaseLogicException;
 import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
 import businesslogic.menu.MenuEventReceiver;
+import businesslogic.recipe.KitchenDuty;
 import businesslogic.user.User;
 import persistence.KitchenTaskPersistence;
 import persistence.PersistenceManager;
@@ -46,24 +47,36 @@ public class KitchenTaskManager {
         return ss;
     }
 
+    public Assignment createAssignment(KitchenDuty duty){
+        Assignment as = getCurrentSheet().addAssignment(duty);
+        this.notifyAssignmentAdded(as);
+        return as;
+    }
+
     private SummarySheet summarySheetExists(ServiceInfo service) {
-        SummarySheet load = new SummarySheet(service);
-        String query = "SELECT * FROM catering.summarysheet WHERE id_service = "+service.getId();
-        PersistenceManager.executeQuery(query, new ResultHandler() {
+        final int[] i = {0};
+        final String[] query = {"SELECT * FROM catering.summarysheet WHERE id_service = " + service.getId()};
+        PersistenceManager.executeQuery(query[0], new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
-                load.setId(rs.getInt("id"));
+                 i[0] =(rs.getInt("id"));
             }
         });
-        if(load.getId() == 0)
+        if(i[0] == 0)
             return null;
         else
-            return load;
+            return new SummarySheet(i[0],service);
     }
 
     private void notifySummarySheetCreated(SummarySheet ss) {
         for (KitchenTaskEventReceiver er : this.eventReceivers) {
             er.updateSummarySheetCreated(ss);
+        }
+    }
+
+    private void notifyAssignmentAdded(Assignment as) {
+        for (KitchenTaskEventReceiver er : this.eventReceivers) {
+            er.updateAssignmentAdded(currentSheet,as,currentSheet.getAssignments().size());
         }
     }
 
