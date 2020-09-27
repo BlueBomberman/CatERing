@@ -9,6 +9,7 @@ import businesslogic.menu.Menu;
 import businesslogic.menu.MenuException;
 import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
+import businesslogic.user.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -19,6 +20,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import ui.Main;
 
 public class ServiceList {
     private KitchenTaskManagement kitchenTaskManagmentController;
@@ -56,7 +58,8 @@ public class ServiceList {
     }
 
     public void initialize() {
-        eventList.setItems(CatERing.getInstance().getEventManager().getEventInfo());
+        //gli eventi vengono settati a runtime, dato che da qua non potremmo recuperare l'id utente
+        eventList.setItems(FXCollections.emptyObservableList());
 
         eventList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         eventList.getSelectionModel().select(null);
@@ -98,5 +101,19 @@ public class ServiceList {
         centralPane.getChildren().remove(ServicePane);
         centralPane.add(emptyPane, 1, 0);
         paneVisible = false;
+    }
+
+    public void setEventList() {
+        int uid = CatERing.getInstance().getUserManager().getCurrentUser().getId();
+        eventList.setItems(CatERing.getInstance().getEventManager().getMyEvent(uid));
+    }
+
+    public void setParent(KitchenTaskManagement kitchenTaskManagement) {
+            this.kitchenTaskManagmentController = kitchenTaskManagement;
+    }
+
+    @FXML
+    public void fineButtonPressed() {
+        kitchenTaskManagmentController.endMenuManagement();
     }
 }

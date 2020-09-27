@@ -5,6 +5,7 @@ import businesslogic.UseCaseLogicException;
 import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
 import businesslogic.menu.MenuEventReceiver;
+import businesslogic.menu.Section;
 import businesslogic.recipe.KitchenDuty;
 import businesslogic.user.User;
 import persistence.KitchenTaskPersistence;
@@ -27,7 +28,7 @@ public class KitchenTaskManager {
     public SummarySheet generateSummarySheet(EventInfo event, ServiceInfo service) throws UseCaseLogicException, KitchenTaskException {
         User user = CatERing.getInstance().getUserManager().getCurrentUser();
 
-        if (!user.isChef() || !user.equals(event.getChef())) {
+        if (!user.isChef() || user.getId() != (event.getChef().getId())) {
             throw new UseCaseLogicException();
         }
 
@@ -47,10 +48,19 @@ public class KitchenTaskManager {
         return ss;
     }
 
+    //dsd2
     public Assignment createAssignment(KitchenDuty duty){
         Assignment as = getCurrentSheet().addAssignment(duty);
         this.notifyAssignmentAdded(as);
         return as;
+    }
+    //dsd3
+    public void editOrder(Assignment as, int position) throws UseCaseLogicException {
+        if (currentSheet == null || currentSheet.getAssignmentPosition(as) < 0) throw new UseCaseLogicException();
+        if (position < 0 || position >= currentSheet.getAssignementsCount()) throw new IllegalArgumentException();
+        this.currentSheet.changeOrder(as, position);
+
+        this.notifyAssignmentsRearranged(currentSheet);
     }
 
     private SummarySheet summarySheetExists(ServiceInfo service) {
@@ -64,8 +74,9 @@ public class KitchenTaskManager {
         });
         if(i[0] == 0)
             return null;
-        else
+        else{
             return new SummarySheet(i[0],service);
+        }
     }
 
     private void notifySummarySheetCreated(SummarySheet ss) {
@@ -77,6 +88,12 @@ public class KitchenTaskManager {
     private void notifyAssignmentAdded(Assignment as) {
         for (KitchenTaskEventReceiver er : this.eventReceivers) {
             er.updateAssignmentAdded(currentSheet,as,currentSheet.getAssignments().size());
+        }
+    }
+
+    private void notifyAssignmentsRearranged(SummarySheet currentSheet) {
+        for (KitchenTaskEventReceiver er : this.eventReceivers) {
+            er.updateAssignmentsRearrenged(currentSheet);
         }
     }
 

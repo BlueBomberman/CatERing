@@ -36,12 +36,15 @@ public class KitchenTaskManagement {
     }
 
     public void initialize() {
+        serviceListController.setParent(this);
+
         if (CatERing.getInstance().getUserManager().getCurrentUser() != null) {
             String uname = CatERing.getInstance().getUserManager().getCurrentUser().getUserName();
             userLabel.setText(uname);
         }
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("task-content.fxml"));
+
         try {
             taskContentPane = loader.load();
             taskContentPaneController = loader.getController();
@@ -50,13 +53,22 @@ public class KitchenTaskManagement {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
-        //TODO: Caricare elenco eventi
     }
 
+
+    //sostituiamo panel
     public void showCurrentSheet() {
         taskContentPaneController.initialize();
-        containerPane.getChildren().remove(serviceList);
-        containerPane.getChildren().add(taskContentPane);
+        taskContentPaneController.init();
+        containerPane.setCenter(taskContentPane);
+    }
+
+    //quando viende cliccato Compiti della cucina in start
+    public void setEventList() {
+        serviceListController.setEventList();
+    }
+
+    public void endMenuManagement() {
+        mainPaneController.showStartPane();
     }
 }

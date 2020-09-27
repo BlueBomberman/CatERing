@@ -24,6 +24,9 @@ public class Test1 {
             Recipe ric = CatERing.getInstance().getRecipeManager().getRecipes().get(1);
             Assignment as = CatERing.getInstance().getTaskMgr().createAssignment(ric);
             System.out.println(ss);
+
+            CatERing.getInstance().getTaskMgr().editOrder(as,4);
+            System.out.println(ss);
         }
         else{
             System.out.println("coglione");

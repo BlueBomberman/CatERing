@@ -75,7 +75,6 @@ public class MenuContent {
         Menu toview = CatERing.getInstance().getMenuManager().getCurrentMenu();
         if (toview != null) {
             titleLabel.setText(toview.getTitle());
-
             sectionList.setItems(toview.getSections());
         }
 
@@ -356,7 +355,6 @@ public class MenuContent {
     public void upSectionPressed() {
         this.changeSectionPosition(-1);
     }
-
 
     @FXML
     public void downSectionPressed() {

@@ -71,6 +71,8 @@ public class Main {
         CatERing.getInstance().getUserManager().fakeLogin("Lidia");
 
         kitchenTaskManagementPaneController.initialize();
+        kitchenTaskManagementPaneController.setEventList();
+
         paneContainer.getChildren().remove(startPane);
         paneContainer.getChildren().add(kitchenTaskManagementPane);
         AnchorPane.setTopAnchor(kitchenTaskManagementPane, 0.0);
@@ -83,6 +85,7 @@ public class Main {
     public void showStartPane() {
         startPaneController.initialize();
         paneContainer.getChildren().remove(menuManagementPane);
+        paneContainer.getChildren().remove(kitchenTaskManagementPane);
         paneContainer.getChildren().add(startPane);
     }
 }

@@ -32,6 +32,7 @@ public class Assignment {
     }
 
     public static void saveNewAssignment(SummarySheet sh,Assignment as, int pos) {
+        System.out.println("sheet: "+sh.getId()+", ass: "+ as.getDuty().getId()+ ", pos: "+ pos);
         String assInsert = "INSERT INTO catering.Assignments (id_duty, id_sheet,position,ready) VALUES (?,?,?,?);";
         PersistenceManager.executeBatchUpdate(assInsert, 1, new BatchUpdateHandler() {
             @Override
@@ -73,6 +74,10 @@ public class Assignment {
 
     public KitchenDuty getDuty() {
         return duty;
+    }
+
+    public int getId() {
+        return id;
     }
 
     //setter
@@ -125,5 +130,9 @@ public class Assignment {
                 assignments.get(count).id = rs.getInt(1);
             }
         });
+    }
+
+    public String toString() {
+        return duty.getName();
     }
 }

@@ -13,4 +13,9 @@ public class KitchenTaskPersistence implements KitchenTaskEventReceiver {
     public void updateAssignmentAdded(SummarySheet sh, Assignment as, int pos) {
         Assignment.saveNewAssignment(sh,as,pos);
     }
+
+    @Override
+    public void updateAssignmentsRearrenged(SummarySheet ss) {
+        SummarySheet.saveAssignmentsOrder(ss);
+    }
 }

@@ -45,10 +45,9 @@ public class SummarySheet {
     public SummarySheet(int id_sum,ServiceInfo service){
         this.service = service;
         this.assignments = FXCollections.observableArrayList();
+        this.setId(id_sum);
 
         openSummarySheet(id_sum);
-
-
     }
 
     public String toString() {
@@ -86,6 +85,22 @@ public class SummarySheet {
         }
     }
 
+    public static void saveAssignmentsOrder(SummarySheet ss) {
+        String upd = "UPDATE Assignments SET position = ? WHERE id = ?";
+        PersistenceManager.executeBatchUpdate(upd, ss.assignments.size(), new BatchUpdateHandler() {
+            @Override
+            public void handleBatchItem(PreparedStatement ps, int batchCount) throws SQLException {
+                ps.setInt(1, batchCount);
+                ps.setInt(2, ss.assignments.get(batchCount).getId());
+            }
+
+            @Override
+            public void handleGeneratedIds(ResultSet rs, int count) throws SQLException {
+                // no generated ids to handle
+            }
+        });
+    }
+
     public void setId(int id) {
         this.id= id;
     }
@@ -95,7 +110,7 @@ public class SummarySheet {
     }
 
     public ObservableList<Assignment> getAssignments() {
-        return assignments; //TODO: AGGIUNGI ROBA PER NON MODIFICARE
+        return FXCollections.unmodifiableObservableList(assignments);
     }
 
     public Assignment addAssignment(KitchenDuty duty) {
@@ -105,7 +120,7 @@ public class SummarySheet {
     }
 
     private void openSummarySheet(int id_ss){
-        String query = "SELECT * FROM Assignments a, recipes r WHERE (a.id_duty = r.id) AND id_sheet = "+ id_ss;
+        String query = "SELECT * FROM Assignments a, recipes r WHERE (a.id_duty = r.id) AND id_sheet = "+ id_ss + " ORDER BY position";
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
@@ -127,5 +142,22 @@ public class SummarySheet {
 
             }
         });
+    }
+
+    public int getAssignementsCount() {
+        return assignments.size();
+    }
+
+    public int getAssignmentPosition(Assignment as) {
+        return this.assignments.indexOf(as);
+    }
+
+    public void changeOrder(Assignment as, int position) {
+        assignments.remove(as);
+        assignments.add(position, as);
+    }
+
+    public String serviceLabel() {
+        return "Servizio " + service.getName();
     }
 }
