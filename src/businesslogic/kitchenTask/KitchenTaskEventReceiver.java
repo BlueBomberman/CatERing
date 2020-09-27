@@ -6,4 +6,8 @@ public interface KitchenTaskEventReceiver {
     void updateAssignmentAdded(SummarySheet sh,Assignment as, int pos);
 
     void updateAssignmentsRearrenged(SummarySheet currentSheet);
+
+    void updateDeletedAssignment(SummarySheet currentSheet, Assignment as);
+
+    void updateAssignmentReady(Assignment as);
 }

@@ -50,6 +50,12 @@ public class SummarySheet {
         openSummarySheet(id_sum);
     }
 
+    public static void deleteAssigment(SummarySheet ss, Assignment as) {
+        String itemdel = "DELETE FROM Assignments WHERE id_sheet = " + ss.getId() +
+                " AND id = " + as.getId();
+        PersistenceManager.executeUpdate(itemdel);
+    }
+
     public String toString() {
         String result = "";
         for(Assignment as: assignments){
@@ -109,6 +115,10 @@ public class SummarySheet {
         return id;
     }
 
+    public ServiceInfo getService() {
+        return service;
+    }
+
     public ObservableList<Assignment> getAssignments() {
         return FXCollections.unmodifiableObservableList(assignments);
     }
@@ -159,5 +169,9 @@ public class SummarySheet {
 
     public String serviceLabel() {
         return "Servizio " + service.getName();
+    }
+
+    public void deleteAssignment(Assignment as) {
+        assignments.remove(as);
     }
 }

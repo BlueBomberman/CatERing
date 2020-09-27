@@ -18,4 +18,14 @@ public class KitchenTaskPersistence implements KitchenTaskEventReceiver {
     public void updateAssignmentsRearrenged(SummarySheet ss) {
         SummarySheet.saveAssignmentsOrder(ss);
     }
+
+    @Override
+    public void updateDeletedAssignment(SummarySheet ss, Assignment as) {
+        SummarySheet.deleteAssigment(ss,as);
+    }
+
+    @Override
+    public void updateAssignmentReady(Assignment as) {
+        Assignment.saveReady(as);
+    }
 }

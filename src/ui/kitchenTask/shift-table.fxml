@@ -13,7 +13,7 @@
 
 <BorderPane prefHeight="530.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.ShiftTable">
    <center>
-      <GridPane fx:id="centralPane" BorderPane.alignment="CENTER">
+      <GridPane fx:id="nicePane" BorderPane.alignment="CENTER">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -47,7 +47,7 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </BorderPane>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #aaaaaa; -fx-border-width: 1;" GridPane.columnIndex="1">
+            <BorderPane fx:id="AssignmentPane" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #aaaaaa; -fx-border-width: 1;" GridPane.columnIndex="1">
                <top>
                   <Label prefHeight="38.0" prefWidth="297.0" style="-fx-border-color: #aaaaaa; -fx-border-width: 0;" text="Assegnamenti" BorderPane.alignment="CENTER">
                      <font>

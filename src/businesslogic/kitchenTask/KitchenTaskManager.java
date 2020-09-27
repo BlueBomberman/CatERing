@@ -8,6 +8,8 @@ import businesslogic.menu.MenuEventReceiver;
 import businesslogic.menu.Section;
 import businesslogic.recipe.KitchenDuty;
 import businesslogic.user.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import persistence.KitchenTaskPersistence;
 import persistence.PersistenceManager;
 import persistence.ResultHandler;
@@ -63,6 +65,18 @@ public class KitchenTaskManager {
         this.notifyAssignmentsRearranged(currentSheet);
     }
 
+    //dsd5d
+    public void deleteAssignment(Assignment as) {
+        currentSheet.deleteAssignment(as);
+        this.notifyDeletedAssignment(currentSheet,as);
+    }
+
+    //dsd5b TODO: magari cambiamo e mettiamo una checkbox in modo da poter rimettere ready = false
+    public void setAssignmentReady(Assignment as) {
+        as.setReady(true);
+        this.notifyAssignmentReady(as);
+    }
+
     private SummarySheet summarySheetExists(ServiceInfo service) {
         final int[] i = {0};
         final String[] query = {"SELECT * FROM catering.summarysheet WHERE id_service = " + service.getId()};
@@ -97,6 +111,18 @@ public class KitchenTaskManager {
         }
     }
 
+    private void notifyDeletedAssignment(SummarySheet currentSheet, Assignment as) {
+        for (KitchenTaskEventReceiver er : this.eventReceivers) {
+            er.updateDeletedAssignment(currentSheet,as);
+        }
+    }
+
+    private void notifyAssignmentReady(Assignment as) {
+        for (KitchenTaskEventReceiver er : this.eventReceivers) {
+            er.updateAssignmentReady(as);
+        }
+    }
+
     private void setCurrentSheet(SummarySheet ss) {
         this.currentSheet = ss;
     }
@@ -108,4 +134,8 @@ public class KitchenTaskManager {
     public SummarySheet getCurrentSheet() {
         return currentSheet;
     }
+
+    /*public static ObservableList<Assignment> getShiftAssignments(int shift_id) {
+        return FXCollections.unmodifiableObservableList(Assignment.getShiftAssignments(shift_id));
+    }*/
 }

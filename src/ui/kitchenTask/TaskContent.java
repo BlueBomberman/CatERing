@@ -5,6 +5,7 @@ import businesslogic.UseCaseLogicException;
 import businesslogic.event.EventInfo;
 import businesslogic.kitchenTask.Assignment;
 import businesslogic.kitchenTask.SummarySheet;
+import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
 import businesslogic.recipe.Recipe;
 import javafx.beans.value.ChangeListener;
@@ -88,18 +89,6 @@ public class TaskContent {
         upButton.setDisable(true);
         downButton.setDisable(true);
         modificaButton.setDisable(true);
-
-        //load modal fxml and controller
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("shift-table.fxml"));
-
-        try {
-            shiftTablePane = loader.load();
-            shiftTablePaneController = loader.getController();
-            shiftTablePaneController.setTaskContentPaneController(this);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
     }
 
     public void init(){
@@ -128,6 +117,19 @@ public class TaskContent {
     }
 
     @FXML
+    public void deleteAssignmentPressed() {
+        Assignment as = assignmentList.getSelectionModel().getSelectedItem();
+        CatERing.getInstance().getTaskMgr().deleteAssignment(as);
+        assignmentList.refresh();
+    }
+
+    @FXML
+    public void readyButtonPressed(){
+        Assignment as = assignmentList.getSelectionModel().getSelectedItem();
+        CatERing.getInstance().getTaskMgr().setAssignmentReady(as);
+    }
+
+    @FXML
     public void upAssPressed() {
         this.changeAssignmentPosition(-1);
     }
@@ -151,6 +153,18 @@ public class TaskContent {
 
     @FXML
     public void tabelloneTurniPressed(){
+        //load modal fxml and controller
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("shift-table.fxml"));
+
+        try {
+            shiftTablePane = loader.load();
+            shiftTablePaneController = loader.getController();
+            shiftTablePaneController.setTaskContentPaneController(this);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
         Stage stage = new Stage();
 
         shiftTablePaneController.setOwnStage(stage);

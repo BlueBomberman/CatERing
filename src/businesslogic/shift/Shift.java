@@ -2,6 +2,7 @@ package businesslogic.shift;
 
 import businesslogic.event.EventInfo;
 import businesslogic.event.ServiceInfo;
+import businesslogic.kitchenTask.Assignment;
 import businesslogic.recipe.Recipe;
 import businesslogic.user.User;
 import javafx.collections.FXCollections;
@@ -49,4 +50,7 @@ public class Shift {
         return all;
     }
 
+    public int getId() {
+        return id;
+    }
 }

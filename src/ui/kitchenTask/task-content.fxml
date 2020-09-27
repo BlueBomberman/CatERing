@@ -39,7 +39,7 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="removeButton" mnemonicParsing="false" text="-">
+                  <Button fx:id="removeButton" mnemonicParsing="false" onAction="#deleteAssignmentPressed" text="-">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -54,7 +54,7 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="readyButton" mnemonicParsing="false" text="Ready">
+                  <Button fx:id="readyButton" mnemonicParsing="false" onAction="#readyButtonPressed" text="Ready">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -1,5 +1,6 @@
 package businesslogic.kitchenTask;
 
+import businesslogic.CatERing;
 import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
 import businesslogic.recipe.KitchenDuty;
@@ -9,6 +10,7 @@ import businesslogic.user.User;
 import javafx.collections.ObservableList;
 import persistence.BatchUpdateHandler;
 import persistence.PersistenceManager;
+import persistence.ResultHandler;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,6 +51,33 @@ public class Assignment {
             }
         });
     }
+
+    /*public static ObservableList<Assignment> getShiftAssignments(int shift_id) {
+        String query = "SELECT * FROM Assignments a, recipes r WHERE (a.id_duty = r.id) AND id_sheet = "+ id_ss + " ORDER BY position";
+        PersistenceManager.executeQuery(query, new ResultHandler() {
+            @Override
+            public void handle(ResultSet rs) throws SQLException {
+                Recipe r = new Recipe(rs.getString("name"));
+                r.setId(rs.getInt("id_duty"));
+
+                Assignment as = new Assignment(r);
+                as.setId(rs.getInt("a.id"));
+                as.setCook(User.loadUserById(rs.getInt("id_cook")));
+                as.setEstTime(rs.getString("estTime"));
+                as.setQuantity(rs.getString("quantity"));
+                as.setReady(rs.getBoolean("ready"));
+                as.setPosition(rs.getInt("position"));
+
+                // as.setShift("id_shift"); //TODO: Fare object di shift
+
+
+                ret.add(as);
+
+            }
+        });
+
+        return ret;
+    }*/
 
 
     //getter
@@ -130,6 +159,11 @@ public class Assignment {
                 assignments.get(count).id = rs.getInt(1);
             }
         });
+    }
+
+    public static void saveReady(Assignment as) {
+        String itemdel = "UPDATE Assignments SET ready=1 WHERE id = " + as.getId();
+        PersistenceManager.executeUpdate(itemdel);
     }
 
     public String toString() {
