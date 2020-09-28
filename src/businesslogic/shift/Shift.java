@@ -50,7 +50,24 @@ public class Shift {
         return all;
     }
 
-    public static Object getShiftCooks(int id) {
+    public static ObservableList<User> getShiftCooks(int id) {
+
+        ObservableList<User> cooks = FXCollections.observableArrayList();
+        //int uid = CatERing.getInstance().getUserManager().getCurrentUser().getId();
+        //System.out.println("Service id: "+ id_service);
+
+        String query = "SELECT id_user FROM assignedshifts s, userroles ur WHERE s.id_user = ur.user_id AND role_id = 'c' AND  id_shift = "+ id;
+        PersistenceManager.executeQuery(query, new ResultHandler() {
+            @Override
+            public void handle(ResultSet rs) throws SQLException {
+                User u = User.loadUserById(rs.getInt("id_user"));
+
+
+                cooks.add(u);
+            }
+        });
+
+        return cooks;
 
     }
 
