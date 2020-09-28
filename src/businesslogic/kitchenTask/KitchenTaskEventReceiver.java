@@ -10,4 +10,6 @@ public interface KitchenTaskEventReceiver {
     void updateDeletedAssignment(SummarySheet currentSheet, Assignment as);
 
     void updateAssignmentReady(Assignment as);
+
+    void updateAssignmentDefined(Assignment as);
 }

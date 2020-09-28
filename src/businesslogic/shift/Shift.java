@@ -57,4 +57,8 @@ public class Shift {
     public String toString() {
         return "Turno "+id + ": "+ startTime + " - " + endTime ;
     }
+
+    public boolean isClosed() {
+        return closed;
+    }
 }

@@ -7,9 +7,12 @@ import businesslogic.event.ServiceInfo;
 import businesslogic.menu.MenuEventReceiver;
 import businesslogic.menu.Section;
 import businesslogic.recipe.KitchenDuty;
+import businesslogic.shift.Shift;
+import businesslogic.shift.ShiftException;
 import businesslogic.user.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import jdk.jfr.Category;
 import persistence.KitchenTaskPersistence;
 import persistence.PersistenceManager;
 import persistence.ResultHandler;
@@ -77,6 +80,21 @@ public class KitchenTaskManager {
         this.notifyAssignmentReady(as);
     }
 
+    //DSD 5
+    public void defineAssignment(Assignment a, Shift s, User cook, String estTime, String quantity) throws UseCaseLogicException, ShiftException {
+        if(CatERing.getInstance().getTaskMgr().getCurrentSheet() == null ){
+            throw new UseCaseLogicException();
+        }
+        if(s.isClosed()){
+            throw new ShiftException();
+        }
+        Assignment as = currentSheet.defineAssignment( a,  s,  cook,  estTime,  quantity);
+        this.notifyAssignmentDefined(as);
+    }
+
+
+
+
     private SummarySheet summarySheetExists(ServiceInfo service) {
         final int[] i = {0};
         final String[] query = {"SELECT * FROM catering.summarysheet WHERE id_service = " + service.getId()};
@@ -120,6 +138,12 @@ public class KitchenTaskManager {
     private void notifyAssignmentReady(Assignment as) {
         for (KitchenTaskEventReceiver er : this.eventReceivers) {
             er.updateAssignmentReady(as);
+        }
+    }
+
+    private void notifyAssignmentDefined(Assignment as) {
+        for (KitchenTaskEventReceiver er : this.eventReceivers) {
+            er.updateAssignmentDefined(as);
         }
     }
 

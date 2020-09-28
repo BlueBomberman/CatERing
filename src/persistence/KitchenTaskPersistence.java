@@ -28,4 +28,7 @@ public class KitchenTaskPersistence implements KitchenTaskEventReceiver {
     public void updateAssignmentReady(Assignment as) {
         Assignment.saveReady(as);
     }
+
+    @Override
+    public void updateAssignmentDefined(Assignment as){Assignment.saveChanges(as);}
 }

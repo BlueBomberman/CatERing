@@ -56,7 +56,7 @@ public class Assignment {
 
     public static ObservableList<Assignment> getShiftAssignments(int shift_id) {
         ObservableList<Assignment> ret = FXCollections.observableArrayList();
-        System.out.println("Assignments for shift n° "+shift_id);
+        System.out.println("Assignments for shift n° " + shift_id);
 
         String query = "SELECT * FROM Assignments a, recipes r WHERE (a.id_duty = r.id) AND id_shift = "+ shift_id;
         PersistenceManager.executeQuery(query, new ResultHandler() {
@@ -78,6 +78,34 @@ public class Assignment {
         });
 
         return ret;
+    }
+
+    public static void saveChanges(Assignment as) {
+
+        String itemdel = "";
+        int idShift = as.getShift().getId();
+        int idCook = as.getCook().getId();
+        String estTime = as.getEstTime();
+        String quantity = as.getQuantity();
+
+       if(idCook != 0 &&  estTime != null && quantity != null){  itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+                ", id_cook = " + idCook + ", estTime = '"+ estTime  +
+                "', quantity = '" + quantity + "' WHERE id = " + as.getId();}
+       else if(idCook != 0 && estTime != null){
+
+       } else if ( idCook != 0 && quantity != null){
+
+       } else if (quantity != null && estTime != null){
+
+       } else if (idCook != 0) {
+
+       } else if (estTime != null){
+
+       } else if (quantity != null){
+
+       }
+        PersistenceManager.executeUpdate(itemdel);
+
     }
 
 
@@ -169,5 +197,17 @@ public class Assignment {
 
     public String toString() {
         return duty.getName();
+    }
+
+    public Assignment define(Shift s, User cook, String estTime, String quantity) {
+        this.shift = s;
+        if(cook != null)
+            this.cook = cook;
+        if(estTime != null)
+            this.estTime = estTime;
+        if(quantity != null)
+            this.quantity = quantity;
+        return this;
+
     }
 }

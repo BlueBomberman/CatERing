@@ -59,7 +59,7 @@
             </FlowPane>
             <FlowPane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #aaaaaa; -fx-border-width: 1;" GridPane.rowIndex="1">
                <children>
-                  <Button fx:id="modificaButton" mnemonicParsing="false" text="Modifica compito">
+                  <Button fx:id="modificaButton" mnemonicParsing="false" onAction="#modificaButtonPressed" text="Modifica compito">
                      <font>
                         <Font size="15.0" />
                      </font>

@@ -7,6 +7,7 @@ import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
 import businesslogic.recipe.KitchenDuty;
 import businesslogic.recipe.Recipe;
+import businesslogic.shift.Shift;
 import businesslogic.user.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -173,5 +174,9 @@ public class SummarySheet {
 
     public void deleteAssignment(Assignment as) {
         assignments.remove(as);
+    }
+
+    public Assignment defineAssignment(Assignment a, Shift s, User cook, String estTime, String quantity) {
+        return a.define(s,cook,estTime,quantity);
     }
 }

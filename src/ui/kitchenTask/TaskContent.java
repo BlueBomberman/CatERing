@@ -8,14 +8,17 @@ import businesslogic.kitchenTask.SummarySheet;
 import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
 import businesslogic.recipe.Recipe;
+import businesslogic.shift.Shift;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jdk.jfr.Category;
@@ -178,5 +181,54 @@ public class TaskContent {
 
 
         stage.showAndWait();
+    }
+
+    @FXML
+    public void modificaButtonPressed(){
+        List<Shift> shifts = CatERing.getInstance().getShiftManager().getShifts(CatERing.getInstance().getTaskMgr().getCurrentSheet().getService().getId());
+        Assignment a = assignmentList.getSelectionModel().getSelectedItem();
+        Shift currentShift = a.getShift();
+        if(currentShift == null){
+            currentShift = new Shift();
+        }
+        Dialog<Assignment> dialog1 = new Dialog<Assignment>();
+        dialog1.setTitle("Modifica Info Assegnamento");
+        //dialog1.setHeaderText("Segli la ricetta");
+        //dialog.setContentText("Scegli la ricetta:");
+        GridPane gridPane = new GridPane();
+        gridPane.setHgap(10);
+        gridPane.setVgap(10);
+        gridPane.setPadding(new Insets(20, 150, 10, 10));
+
+
+        ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList(a));
+        //cb.setValue(currentShift);
+        ChoiceBox cb1 = new ChoiceBox(FXCollections.observableArrayList(a));
+        //cb1.setValue(currentShift);
+        TextField estTime = new TextField();
+        estTime.setPromptText("Tempo Stimato");
+        TextField quantita = new TextField();
+        quantita.setPromptText("Quantita'");
+
+        gridPane.add(new Label("Turno:"), 0, 0);
+        gridPane.add(cb, 0, 1);
+        gridPane.add(new Label("Cuoco:"), 0, 2);
+        gridPane.add(cb1, 0, 3);
+        gridPane.add(new Label("Tempo Stimato:"), 0, 4);
+        gridPane.add(estTime, 0, 5);
+        gridPane.add(new Label("Quantita':"), 0, 6);
+        gridPane.add(quantita, 0, 7);
+
+        dialog1.getDialogPane().setContent(gridPane);
+
+
+
+// Traditional way to get the response value.
+       Optional<Assignment> result = dialog1.showAndWait();
+        if (result.isPresent()){
+            System.out.println("Your choice: " + result.get());
+           // if(result.get().getId() != 0)
+               // CatERing.getInstance().getTaskMgr().createAssignment(result.get());
+        }
     }
 }

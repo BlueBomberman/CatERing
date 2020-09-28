@@ -6,9 +6,12 @@ import businesslogic.kitchenTask.Assignment;
 import businesslogic.kitchenTask.KitchenTaskException;
 import businesslogic.kitchenTask.SummarySheet;
 import businesslogic.recipe.Recipe;
+import businesslogic.shift.Shift;
+import businesslogic.shift.ShiftException;
+import businesslogic.user.User;
 
 public class Test1 {
-    public static void main(String[] args) throws KitchenTaskException, UseCaseLogicException {
+    public static void main(String[] args) throws KitchenTaskException, UseCaseLogicException, ShiftException {
         CatERing.getInstance().getUserManager().fakeLogin("Lidia");
         System.out.println(CatERing.getInstance().getUserManager().getCurrentUser());
 
@@ -22,11 +25,19 @@ public class Test1 {
 
             //passo 2
             Recipe ric = CatERing.getInstance().getRecipeManager().getRecipes().get(1);
-            Assignment as = CatERing.getInstance().getTaskMgr().createAssignment(ric);
+            Assignment as = ss.getAssignments().get(5);
             System.out.println(ss);
+            System.out.println("Hello id1: " + as.getId());
 
             CatERing.getInstance().getTaskMgr().editOrder(as,4);
             System.out.println(ss);
+
+            Shift s= CatERing.getInstance().getShiftManager().getShifts(2).get(0);
+            User c = User.loadUserById(5);
+            //Passo5
+            CatERing.getInstance().getTaskMgr().defineAssignment(as,s,null,"1 ora",null);
+
+            System.out.println("Hello id: " + as.getId());
         }
         else{
             System.out.println("coglione");
