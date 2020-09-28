@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 26, 2020 at 04:25 PM
+-- Generation Time: Sep 28, 2020 at 08:52 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -56,14 +56,66 @@ INSERT INTO `assignments` (`id`, `ready`, `estTime`, `quantity`, `id_cook`, `id_
 (9, 0, NULL, NULL, NULL, NULL, 9, 5, 1),
 (10, 0, NULL, NULL, NULL, NULL, 10, 5, 2),
 (11, 0, NULL, NULL, NULL, NULL, 11, 5, 3),
-(12, 0, NULL, NULL, NULL, NULL, 12, 5, 4),
-(13, 0, NULL, NULL, NULL, NULL, 12, 5, 5),
-(14, 0, NULL, NULL, NULL, NULL, 12, 5, 6),
+(12, 0, NULL, NULL, NULL, NULL, 12, 5, 5),
+(13, 0, NULL, NULL, NULL, NULL, 12, 5, 6),
+(14, 0, NULL, NULL, NULL, NULL, 12, 5, 7),
 (15, 0, NULL, NULL, NULL, NULL, 1, 6, 1),
 (16, 0, NULL, NULL, NULL, NULL, 6, 6, 1),
 (17, 0, NULL, NULL, NULL, NULL, 6, 5, 8),
-(18, 0, NULL, NULL, NULL, NULL, 2, 5, 8),
-(19, 0, NULL, NULL, NULL, NULL, 2, 0, 10);
+(18, 0, NULL, NULL, NULL, NULL, 2, 5, 9),
+(24, 0, NULL, NULL, NULL, NULL, 9, 8, 0),
+(25, 0, NULL, NULL, NULL, NULL, 9, 8, 1),
+(26, 0, NULL, NULL, NULL, NULL, 10, 8, 2),
+(27, 0, NULL, NULL, NULL, NULL, 11, 8, 3),
+(28, 0, NULL, NULL, NULL, NULL, 12, 8, 5),
+(29, 0, NULL, NULL, NULL, NULL, 12, 8, 6),
+(30, 0, NULL, NULL, NULL, NULL, 12, 8, 7),
+(31, 0, NULL, NULL, NULL, NULL, 2, 8, 4),
+(32, 0, NULL, NULL, NULL, NULL, 4, 0, 1),
+(33, 0, NULL, NULL, NULL, NULL, 1, 9, 0),
+(34, 0, NULL, NULL, NULL, NULL, 2, 9, 3),
+(35, 1, NULL, NULL, NULL, NULL, 3, 9, 7),
+(36, 0, NULL, NULL, NULL, NULL, 5, 9, 8),
+(37, 0, NULL, NULL, NULL, NULL, 20, 9, 2),
+(38, 0, NULL, NULL, NULL, NULL, 8, 9, 5),
+(39, 0, NULL, NULL, NULL, NULL, 18, 9, 6),
+(40, 0, NULL, NULL, NULL, NULL, 19, 9, 1),
+(41, 0, NULL, NULL, NULL, NULL, 9, 0, 9),
+(42, 0, NULL, NULL, NULL, NULL, 5, 0, 9),
+(43, 0, NULL, NULL, NULL, NULL, 6, 0, 9);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `asssignedshifts`
+--
+
+CREATE TABLE `asssignedshifts` (
+  `id_user` int(11) NOT NULL,
+  `id_shift` int(11) NOT NULL,
+  `role` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `asssignedshifts`
+--
+
+INSERT INTO `asssignedshifts` (`id_user`, `id_shift`, `role`) VALUES
+(4, 4, ''),
+(4, 5, ''),
+(4, 6, ''),
+(4, 7, ''),
+(5, 10, ''),
+(5, 11, ''),
+(5, 12, ''),
+(5, 13, ''),
+(6, 6, ''),
+(6, 7, ''),
+(6, 8, ''),
+(6, 9, ''),
+(7, 5, ''),
+(7, 6, ''),
+(7, 7, '');
 
 -- --------------------------------------------------------
 
@@ -174,7 +226,9 @@ INSERT INTO `menuitems` (`id`, `menu_id`, `section_id`, `description`, `recipe_i
 (116, 86, 42, 'Risotto alla zucca', 20, 1),
 (117, 86, 43, 'Salmone al forno', 8, 0),
 (118, 86, 44, 'Sorbetto al limone', 18, 0),
-(119, 86, 44, 'Torta Saint Honoré', 19, 1);
+(119, 86, 44, 'Torta Saint Honoré', 19, 1),
+(121, 91, 45, 'Insalata di riso', 4, 0),
+(122, 91, 45, 'Hamburger con bacon e cipolla caramellata', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -306,7 +360,7 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`id`, `event_id`, `name`, `proposed_menu_id`, `approved_menu_id`, `service_date`, `time_start`, `time_end`, `expected_participants`) VALUES
-(1, 2, 'Cena', 86, 0, '2020-08-13', '20:00:00', '23:30:00', 25),
+(1, 2, 'Cena', 86, 86, '2020-08-13', '20:00:00', '23:30:00', 25),
 (2, 1, 'Coffee break mattino', 0, 80, '2020-09-25', '10:30:00', '11:30:00', 100),
 (3, 1, 'Colazione di lavoro', 0, 80, '2020-09-25', '13:00:00', '14:00:00', 80),
 (4, 1, 'Coffee break pomeriggio', 0, 82, '2020-09-25', '16:00:00', '16:30:00', 100),
@@ -314,6 +368,39 @@ INSERT INTO `services` (`id`, `event_id`, `name`, `proposed_menu_id`, `approved_
 (6, 3, 'Pranzo giorno 1', 0, 0, '2020-10-02', '12:00:00', '15:00:00', 200),
 (7, 3, 'Pranzo giorno 2', 0, 0, '2020-10-03', '12:00:00', '15:00:00', 300),
 (8, 3, 'Pranzo giorno 3', 0, 0, '2020-10-04', '12:00:00', '15:00:00', 400);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shifts`
+--
+
+CREATE TABLE `shifts` (
+  `id` int(11) NOT NULL,
+  `id_service` int(11) NOT NULL,
+  `startTime` timestamp NULL DEFAULT NULL,
+  `endTime` timestamp NULL DEFAULT NULL,
+  `closed` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `shifts`
+--
+
+INSERT INTO `shifts` (`id`, `id_service`, `startTime`, `endTime`, `closed`) VALUES
+(1, 2, '2020-09-27 02:00:00', '2020-09-27 11:00:00', 0),
+(2, 2, '2020-09-27 10:00:00', '2020-09-27 12:00:00', 0),
+(3, 2, '2020-09-27 10:00:00', '2020-09-27 12:00:00', 0),
+(4, 3, '2020-09-10 05:00:00', '2020-09-27 13:00:00', 0),
+(5, 1, '2020-09-10 22:00:00', '2020-09-18 22:00:00', 0),
+(6, 1, '2020-09-18 02:00:00', '2020-09-18 13:00:00', 0),
+(7, 1, '2020-09-24 04:00:00', '2020-09-24 10:00:00', 0),
+(8, 1, '2020-09-10 04:00:00', '2020-09-10 12:00:00', 0),
+(9, 1, '2020-09-30 08:00:00', '2020-09-30 16:00:00', 0),
+(10, 1, '2020-10-15 22:00:00', '2020-10-16 09:00:00', 0),
+(11, 1, '2020-09-10 04:00:00', '2020-09-10 12:00:00', 0),
+(12, 1, '2020-09-30 08:00:00', '2020-09-30 16:00:00', 0),
+(13, 1, '2020-10-15 22:00:00', '2020-10-16 09:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -332,8 +419,9 @@ CREATE TABLE `summarysheet` (
 
 INSERT INTO `summarysheet` (`id`, `id_service`) VALUES
 (4, 3),
-(5, 2),
-(6, 5);
+(6, 5),
+(8, 2),
+(9, 1);
 
 -- --------------------------------------------------------
 
@@ -403,6 +491,12 @@ ALTER TABLE `assignments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `asssignedshifts`
+--
+ALTER TABLE `asssignedshifts`
+  ADD PRIMARY KEY (`id_user`,`id_shift`);
+
+--
 -- Indexes for table `events`
 --
 ALTER TABLE `events`
@@ -445,6 +539,12 @@ ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `shifts`
+--
+ALTER TABLE `shifts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `summarysheet`
 --
 ALTER TABLE `summarysheet`
@@ -464,7 +564,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -476,13 +576,13 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `menuitems`
 --
 ALTER TABLE `menuitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
 
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 
 --
 -- AUTO_INCREMENT for table `menusections`
@@ -503,10 +603,16 @@ ALTER TABLE `services`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `shifts`
+--
+ALTER TABLE `shifts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
 -- AUTO_INCREMENT for table `summarysheet`
 --
 ALTER TABLE `summarysheet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
