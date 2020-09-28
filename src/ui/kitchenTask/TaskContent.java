@@ -9,6 +9,8 @@ import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
 import businesslogic.recipe.Recipe;
 import businesslogic.shift.Shift;
+import businesslogic.shift.ShiftException;
+import businesslogic.user.User;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -202,26 +204,21 @@ public class TaskContent {
             stage.setScene(new Scene(pane));
 
             stage.showAndWait();
-            //TODO:
-            /*Optional<Recipe> chosen = controller.getSelectedRecipe();
-            Optional<String> desc = controller.getDescription();
-            if (chosen.isPresent()) {
-                if (selSection != null) {
-                    if (desc.isPresent()) {
-                        CatERing.getInstance().getMenuManager().insertItem(chosen.get(), selSection, desc.get());
-                    } else {
-                        CatERing.getInstance().getMenuManager().insertItem(chosen.get(), selSection);
-                    }
-                } else {
-                    if (desc.isPresent()) {
-                        CatERing.getInstance().getMenuManager().insertItem(chosen.get(), desc.get());
-                    } else {
-                        CatERing.getInstance().getMenuManager().insertItem(chosen.get());
-                    }
-                }
-            }*/
+
+            Shift chosenShift = controller.getSelectedShift();
+            User chosenCook = controller.getSelectedCook();
+            String insEstTime = controller.getInsEstTime();
+            String insQuantity = controller.getInsQuantity();
+            //System.out.println(chosenShift +", " + chosenCook + ", " + insEstTime + ", " + insQuantity);
+
+            CatERing.getInstance().getTaskMgr().defineAssignment(selAssignment,chosenShift,chosenCook,insQuantity,insEstTime);
+
         } catch (IOException ex) {
             ex.printStackTrace();
+        } catch (UseCaseLogicException e) {
+            e.printStackTrace();
+        } catch (ShiftException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -28,8 +28,8 @@
    <bottom>
       <FlowPane alignment="CENTER" hgap="10.0" prefHeight="43.0" prefWidth="300.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="saveButton" disable="true" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Salva" />
-            <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="92.0" text="Annulla" />
+            <Button fx:id="saveButton" disable="true" mnemonicParsing="false" onAction="#saveButtonPressed" prefHeight="27.0" prefWidth="90.0" text="Salva" />
+            <Button mnemonicParsing="false" onAction="#annullaButtonPressed" prefHeight="27.0" prefWidth="92.0" text="Annulla" />
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

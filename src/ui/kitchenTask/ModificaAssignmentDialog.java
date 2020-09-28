@@ -11,6 +11,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.util.Optional;
+
 public class ModificaAssignmentDialog {
     Stage myStage;
 
@@ -59,9 +61,45 @@ public class ModificaAssignmentDialog {
             cookCombo.setItems(CatERing.getInstance().getShiftManager().getCooks(sel.getId()));
     }
 
+    @FXML
+    public void saveButtonPressed() {
+        confirmed = true;
+        selectedShift = shiftCombo.getValue();
+        selectedCook = cookCombo.getValue();
+        insEstTime = quantityField.getText();
+        insQuantity = estTimeField.getText();
+        myStage.close();
+    }
 
+    @FXML
+    public void annullaButtonPressed() {
+        confirmed = false;
+        myStage.close();
+    }
 
     public void setOwnStage(Stage stage) {
-        myStage = stage;
+        if(myStage == null)
+            myStage = stage;
+    }
+
+    //getter
+    public Shift getSelectedShift() {
+        if (!confirmed) selectedShift = null;
+        return selectedShift;
+    }
+
+    public User getSelectedCook() {
+        if (!confirmed) selectedCook = null;
+        return selectedCook;
+    }
+
+    public String getInsEstTime() {
+        if (!confirmed || insEstTime.equals("")) insEstTime = null;
+        return insEstTime;
+    }
+
+    public String getInsQuantity() {
+        if (!confirmed || insQuantity.equals("")) insQuantity = null;
+        return insQuantity;
     }
 }
