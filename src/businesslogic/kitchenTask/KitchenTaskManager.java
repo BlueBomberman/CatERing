@@ -141,7 +141,7 @@ public class KitchenTaskManager {
         }
     }
 
-    private void notifyAssignmentDefined(Assignment as) {
+    private void notifyAssignmentDefined(Assignment as) throws UseCaseLogicException {
         for (KitchenTaskEventReceiver er : this.eventReceivers) {
             er.updateAssignmentDefined(as);
         }

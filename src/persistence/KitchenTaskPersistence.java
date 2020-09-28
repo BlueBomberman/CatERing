@@ -1,5 +1,6 @@
 package persistence;
 
+import businesslogic.UseCaseLogicException;
 import businesslogic.kitchenTask.Assignment;
 import businesslogic.kitchenTask.KitchenTaskEventReceiver;
 import businesslogic.kitchenTask.SummarySheet;
@@ -30,5 +31,5 @@ public class KitchenTaskPersistence implements KitchenTaskEventReceiver {
     }
 
     @Override
-    public void updateAssignmentDefined(Assignment as){Assignment.saveChanges(as);}
+    public void updateAssignmentDefined(Assignment as) throws UseCaseLogicException {Assignment.saveChanges(as);}
 }

@@ -1,6 +1,7 @@
 package businesslogic.kitchenTask;
 
 import businesslogic.CatERing;
+import businesslogic.UseCaseLogicException;
 import businesslogic.event.EventInfo;
 import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
@@ -80,7 +81,7 @@ public class Assignment {
         return ret;
     }
 
-    public static void saveChanges(Assignment as) {
+    public static void saveChanges(Assignment as) throws UseCaseLogicException {
 
         String itemdel = "";
         int idShift = as.getShift().getId();
@@ -88,21 +89,53 @@ public class Assignment {
         String estTime = as.getEstTime();
         String quantity = as.getQuantity();
 
-       if(idCook != 0 &&  estTime != null && quantity != null){  itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+       if(idCook != 0 &&  estTime != null && quantity != null){
+           System.out.println("Caso 1");
+           itemdel = "UPDATE Assignments SET id_shift = " + idShift +
                 ", id_cook = " + idCook + ", estTime = '"+ estTime  +
-                "', quantity = '" + quantity + "' WHERE id = " + as.getId();}
-       else if(idCook != 0 && estTime != null){
+                "', quantity = '" + quantity + "' WHERE id = " + as.getId();
+
+       } else if(idCook != 0 && estTime != null){
+           System.out.println("Caso 2");
+
+           itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+                   ", id_cook = " + idCook + ", estTime = '"+ estTime  +
+                   "' WHERE id = " + as.getId();
 
        } else if ( idCook != 0 && quantity != null){
+           System.out.println("Caso 3");
+
+           itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+                   ", id_cook = " + idCook + ", quantity = '" + quantity + "' WHERE id = " + as.getId();
 
        } else if (quantity != null && estTime != null){
+           System.out.println("Caso 4");
+
+           itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+                   ", estTime = '"+ estTime  +
+                   "', quantity = '" + quantity + "' WHERE id = " + as.getId();
 
        } else if (idCook != 0) {
+           System.out.println("Caso 5");
+
+           itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+                   ", id_cook = " + idCook + " WHERE id = " + as.getId();
 
        } else if (estTime != null){
+           System.out.println("Caso 6");
+
+           itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+                   ", estTime = '"+ estTime  +
+                   "' WHERE id = " + as.getId();
 
        } else if (quantity != null){
+           System.out.println("Caso 7");
 
+           itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+                   ", quantity = '" + quantity + "' WHERE id = " + as.getId();
+
+       } else {
+           throw new UseCaseLogicException();
        }
         PersistenceManager.executeUpdate(itemdel);
 

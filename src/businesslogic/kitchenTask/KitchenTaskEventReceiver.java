@@ -1,5 +1,7 @@
 package businesslogic.kitchenTask;
 
+import businesslogic.UseCaseLogicException;
+
 public interface KitchenTaskEventReceiver {
     public void updateSummarySheetCreated(SummarySheet ss);
 
@@ -11,5 +13,5 @@ public interface KitchenTaskEventReceiver {
 
     void updateAssignmentReady(Assignment as);
 
-    void updateAssignmentDefined(Assignment as);
+    void updateAssignmentDefined(Assignment as) throws UseCaseLogicException;
 }

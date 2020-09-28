@@ -25,7 +25,7 @@ public class Test1 {
 
             //passo 2
             Recipe ric = CatERing.getInstance().getRecipeManager().getRecipes().get(1);
-            Assignment as = ss.getAssignments().get(5);
+            Assignment as = ss.getAssignments().get(7);
             System.out.println(ss);
             System.out.println("Hello id1: " + as.getId());
 
@@ -34,8 +34,10 @@ public class Test1 {
 
             Shift s= CatERing.getInstance().getShiftManager().getShifts(2).get(0);
             User c = User.loadUserById(5);
+            //User c1 = new User();
+            //System.out.println("UTENTE NON ESISTENTE: " + c1.getId());
             //Passo5
-            CatERing.getInstance().getTaskMgr().defineAssignment(as,s,null,"1 ora",null);
+            CatERing.getInstance().getTaskMgr().defineAssignment(as,s,null,null,"9");
 
             System.out.println("Hello id: " + as.getId());
         }
