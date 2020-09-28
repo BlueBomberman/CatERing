@@ -134,7 +134,14 @@ public class Assignment {
            itemdel = "UPDATE Assignments SET id_shift = " + idShift +
                    ", quantity = '" + quantity + "' WHERE id = " + as.getId();
 
-       } else {
+       } else if(idShift != 0){
+
+
+           itemdel = "UPDATE Assignments SET id_shift = " + idShift +
+                  " WHERE id = " + as.getId();
+
+       }
+       else{
            throw new UseCaseLogicException();
        }
         PersistenceManager.executeUpdate(itemdel);
