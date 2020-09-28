@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="189.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="189.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.ModificaAssignmentDialog">
    <center>
       <VBox prefHeight="156.0" prefWidth="290.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
-            <ComboBox prefHeight="27.0" prefWidth="301.0" promptText="Seleziona Turno" />
-            <ComboBox prefHeight="27.0" prefWidth="306.0" promptText="Seleziona Cuoco" />
-            <TextField promptText="Inserisci tempo stimato" />
-            <TextField promptText="Inserisci quantità" />
+            <ComboBox fx:id="shiftCombo" onAction="#shiftComboSelection" prefHeight="27.0" prefWidth="301.0" promptText="Seleziona Turno" />
+            <ComboBox fx:id="cookCombo" disable="true" prefHeight="27.0" prefWidth="306.0" promptText="Seleziona Cuoco" />
+            <TextField fx:id="estTimeField" disable="true" promptText="Inserisci tempo stimato" />
+            <TextField fx:id="quantityField" disable="true" promptText="Inserisci quantità" />
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -28,7 +28,7 @@
    <bottom>
       <FlowPane alignment="CENTER" hgap="10.0" prefHeight="43.0" prefWidth="300.0" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" onAction="#salvaButtonPressed" prefHeight="27.0" prefWidth="90.0" text="Salva" />
+            <Button fx:id="saveButton" disable="true" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Salva" />
             <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="92.0" text="Annulla" />
          </children>
          <BorderPane.margin>

@@ -50,6 +50,10 @@ public class Shift {
         return all;
     }
 
+    public static Object getShiftCooks(int id) {
+
+    }
+
     public int getId() {
         return id;
     }

@@ -22,6 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import jdk.jfr.Category;
+import ui.menu.InsertItemDialog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -185,50 +186,42 @@ public class TaskContent {
 
     @FXML
     public void modificaButtonPressed(){
-        List<Shift> shifts = CatERing.getInstance().getShiftManager().getShifts(CatERing.getInstance().getTaskMgr().getCurrentSheet().getService().getId());
-        Assignment a = assignmentList.getSelectionModel().getSelectedItem();
-        Shift currentShift = a.getShift();
-        if(currentShift == null){
-            currentShift = new Shift();
-        }
-        Dialog<Assignment> dialog1 = new Dialog<Assignment>();
-        dialog1.setTitle("Modifica Info Assegnamento");
-        //dialog1.setHeaderText("Segli la ricetta");
-        //dialog.setContentText("Scegli la ricetta:");
-        GridPane gridPane = new GridPane();
-        gridPane.setHgap(10);
-        gridPane.setVgap(10);
-        gridPane.setPadding(new Insets(20, 150, 10, 10));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("modifica-assignment-dialog.fxml"));
+        try {
+            BorderPane pane = loader.load();
+            ModificaAssignmentDialog controller = loader.getController();
 
+            Stage stage = new Stage();
 
-        ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList(a));
-        //cb.setValue(currentShift);
-        ChoiceBox cb1 = new ChoiceBox(FXCollections.observableArrayList(a));
-        //cb1.setValue(currentShift);
-        TextField estTime = new TextField();
-        estTime.setPromptText("Tempo Stimato");
-        TextField quantita = new TextField();
-        quantita.setPromptText("Quantita'");
+            controller.setOwnStage(stage);
+            controller.init();
 
-        gridPane.add(new Label("Turno:"), 0, 0);
-        gridPane.add(cb, 0, 1);
-        gridPane.add(new Label("Cuoco:"), 0, 2);
-        gridPane.add(cb1, 0, 3);
-        gridPane.add(new Label("Tempo Stimato:"), 0, 4);
-        gridPane.add(estTime, 0, 5);
-        gridPane.add(new Label("Quantita':"), 0, 6);
-        gridPane.add(quantita, 0, 7);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Assignment selAssignment = assignmentList.getSelectionModel().getSelectedItem();
+            stage.setTitle("Modifica Assegnamento per ricetta " + selAssignment.getDuty().getName());
+            stage.setScene(new Scene(pane));
 
-        dialog1.getDialogPane().setContent(gridPane);
-
-
-
-// Traditional way to get the response value.
-       Optional<Assignment> result = dialog1.showAndWait();
-        if (result.isPresent()){
-            System.out.println("Your choice: " + result.get());
-           // if(result.get().getId() != 0)
-               // CatERing.getInstance().getTaskMgr().createAssignment(result.get());
+            stage.showAndWait();
+            //TODO:
+            /*Optional<Recipe> chosen = controller.getSelectedRecipe();
+            Optional<String> desc = controller.getDescription();
+            if (chosen.isPresent()) {
+                if (selSection != null) {
+                    if (desc.isPresent()) {
+                        CatERing.getInstance().getMenuManager().insertItem(chosen.get(), selSection, desc.get());
+                    } else {
+                        CatERing.getInstance().getMenuManager().insertItem(chosen.get(), selSection);
+                    }
+                } else {
+                    if (desc.isPresent()) {
+                        CatERing.getInstance().getMenuManager().insertItem(chosen.get(), desc.get());
+                    } else {
+                        CatERing.getInstance().getMenuManager().insertItem(chosen.get());
+                    }
+                }
+            }*/
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 }
