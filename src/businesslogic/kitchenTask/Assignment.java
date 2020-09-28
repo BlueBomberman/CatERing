@@ -1,12 +1,14 @@
 package businesslogic.kitchenTask;
 
 import businesslogic.CatERing;
+import businesslogic.event.EventInfo;
 import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
 import businesslogic.recipe.KitchenDuty;
 import businesslogic.recipe.Recipe;
 import businesslogic.shift.Shift;
 import businesslogic.user.User;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import persistence.BatchUpdateHandler;
 import persistence.PersistenceManager;
@@ -52,8 +54,11 @@ public class Assignment {
         });
     }
 
-    /*public static ObservableList<Assignment> getShiftAssignments(int shift_id) {
-        String query = "SELECT * FROM Assignments a, recipes r WHERE (a.id_duty = r.id) AND id_sheet = "+ id_ss + " ORDER BY position";
+    public static ObservableList<Assignment> getShiftAssignments(int shift_id) {
+        ObservableList<Assignment> ret = FXCollections.observableArrayList();
+        System.out.println("Assignments for shift n° "+shift_id);
+
+        String query = "SELECT * FROM Assignments a, recipes r WHERE (a.id_duty = r.id) AND id_shift = "+ shift_id;
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {
@@ -68,16 +73,12 @@ public class Assignment {
                 as.setReady(rs.getBoolean("ready"));
                 as.setPosition(rs.getInt("position"));
 
-                // as.setShift("id_shift"); //TODO: Fare object di shift
-
-
                 ret.add(as);
-
             }
         });
 
         return ret;
-    }*/
+    }
 
 
     //getter

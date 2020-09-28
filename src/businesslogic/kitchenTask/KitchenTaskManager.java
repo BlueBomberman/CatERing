@@ -135,7 +135,7 @@ public class KitchenTaskManager {
         return currentSheet;
     }
 
-    /*public static ObservableList<Assignment> getShiftAssignments(int shift_id) {
+    public ObservableList<Assignment> getShiftAssignments(int shift_id) {
         return FXCollections.unmodifiableObservableList(Assignment.getShiftAssignments(shift_id));
-    }*/
+    }
 }

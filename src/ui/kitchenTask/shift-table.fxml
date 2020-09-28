@@ -24,7 +24,7 @@
          <children>
             <BorderPane prefHeight="231.0" prefWidth="187.0" style="-fx-border-color: #aaaaaa; -fx-border-width: 1;">
                <center>
-                  <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <ListView fx:id="shiftList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </BorderPane.margin>
@@ -56,7 +56,7 @@
                   </Label>
                </top>
                <center>
-                  <ListView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <ListView fx:id="assignmentList" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </BorderPane.margin>

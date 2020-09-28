@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="containerPane" prefHeight="360.0" prefWidth="637.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.KitchenTaskManagement">
+<BorderPane fx:id="containerPane" prefHeight="702.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.KitchenTaskManagement">
    <top>
-      <Label fx:id="userLabel" prefHeight="45.0" prefWidth="662.0" text="User Info" BorderPane.alignment="CENTER">
+      <Label fx:id="userLabel" prefHeight="46.0" prefWidth="1154.0" text="User Info" BorderPane.alignment="CENTER">
          <font>
-            <Font size="15.0" />
+            <Font size="18.0" />
          </font>
       </Label>
    </top>

@@ -38,9 +38,9 @@ public class ShiftTable {
         this.TaskContentPaneController = taskContent;
     }
 
-    /*public void initialize() {
-        int ser_id = CatERing.getInstance().getTaskMgr().getCurrentSheet().getService().getId();
-        shiftList.setItems(CatERing.getInstance().getShiftManager().getShifts(ser_id));
+    public void initialize() {
+
+        shiftList.setItems(FXCollections.emptyObservableList());
 
         shiftList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
         shiftList.getSelectionModel().select(null);
@@ -54,7 +54,7 @@ public class ShiftTable {
                         paneVisible = true;
                     }
 
-                    //assignmentList.setItems(CatERing.getInstance().getTaskMgr().getShiftAssignments(newShift.getId()));//TODO
+                    assignmentList.setItems(CatERing.getInstance().getTaskMgr().getShiftAssignments(newShift.getId()));
                     // disable Service actions
                 }
             }
@@ -67,7 +67,12 @@ public class ShiftTable {
         nicePane.getChildren().remove(AssignmentPane);
         nicePane.add(emptyPane, 1, 0);
         paneVisible = false;
-    }*/
+    }
+
+    public void init(){
+        int ser_id = CatERing.getInstance().getTaskMgr().getCurrentSheet().getService().getId();
+        shiftList.setItems(CatERing.getInstance().getShiftManager().getShifts(ser_id));
+    }
 
     @FXML
     public void indietroPressed() {

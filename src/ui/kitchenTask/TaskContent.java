@@ -165,13 +165,16 @@ public class TaskContent {
             ex.printStackTrace();
         }
 
+        shiftTablePaneController.initialize();
+        shiftTablePaneController.init();
+
         Stage stage = new Stage();
 
         shiftTablePaneController.setOwnStage(stage);
 
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.setTitle("Tabellone turni");
-        stage.setScene(new Scene(shiftTablePane, 600, 400));
+        stage.setScene(new Scene(shiftTablePane, 1200, 480));
 
 
         stage.showAndWait();

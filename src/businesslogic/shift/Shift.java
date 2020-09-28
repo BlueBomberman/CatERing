@@ -53,4 +53,8 @@ public class Shift {
     public int getId() {
         return id;
     }
+
+    public String toString() {
+        return "Turno "+id + ": "+ startTime + " - " + endTime ;
+    }
 }
