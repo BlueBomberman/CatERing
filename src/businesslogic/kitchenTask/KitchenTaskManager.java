@@ -79,6 +79,7 @@ public class KitchenTaskManager {
         if(action.equals("Ready")){
             as.setReady(true);
             as.setCook(null);
+            as.setEstTime(null);
             as.setShift(null);
         }else {
             as.setReady(false);

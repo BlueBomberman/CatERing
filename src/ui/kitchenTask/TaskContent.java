@@ -147,7 +147,7 @@ public class TaskContent {
         Assignment as = assignmentList.getSelectionModel().getSelectedItem();
         String action = readyButton.getText();
         CatERing.getInstance().getTaskMgr().setAssignmentReady(as,action);
-        initialize();
+        //initialize();
         init();
 
     }
@@ -231,7 +231,7 @@ public class TaskContent {
             //System.out.println(chosenShift +", " + chosenCook + ", " + insEstTime + ", " + insQuantity);
             if(controller.getConfirmed())
             CatERing.getInstance().getTaskMgr().defineAssignment(selAssignment,chosenShift,chosenCook,insQuantity,insEstTime);
-
+            this.init();
         } catch (IOException ex) {
             ex.printStackTrace();
         } catch (UseCaseLogicException e) {

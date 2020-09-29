@@ -235,55 +235,58 @@ public class Assignment {
     }
 
     public static void saveReady(Assignment as) {
-        String itemdel = "UPDATE Assignments SET ready=1 WHERE id = " + as.getId();
+        String itemdel = "UPDATE Assignments SET ready=1, id_cook=NULL, id_shift=NULL,estTime=NULL  WHERE id = " + as.getId();
         PersistenceManager.executeUpdate(itemdel);
     }
 
     public String toString() {
         //DEVO STAMPARE: nome ricetta, cuoco, pronto, quantità, estTime
-        String pronto = "";
+        String pronto = ".";
+        String turno = "";
         if(ready)
-            pronto = "la mansione è già pronta!";
+            pronto = " , la mansione è già pronta!";
+        if(this.getShift()!= null)
+            turno = " ---- "+ this.getShift();
          if(cook != null &&  estTime != null && quantity != null){
            System.out.println("Caso 1");
 
-           return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ",  quantita': " + quantity +", tempo stimato: " + estTime + ", " + pronto;
+           return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ",  quantita': " + quantity +", tempo stimato: " + estTime + pronto + turno;
 
        } else if(cook != null && estTime != null){
            System.out.println("Caso 2");
 
-             return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ", tempo stimato: " + estTime + ", " + pronto;
+             return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ", tempo stimato: " + estTime +  pronto + turno;
 
 
        } else if ( cook != null && quantity != null){
            System.out.println("Caso 3");
 
-           return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ",  quantita': " + quantity  + ", " + pronto;
+           return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ",  quantita': " + quantity  + pronto + turno;
 
 
        } else if (quantity != null && estTime != null){
            System.out.println("Caso 4");
 
-             return "Ricetta: "+duty.getName()  + ",  quantita': " + quantity +", tempo stimato: " + estTime + ", " + pronto;
+             return "Ricetta: "+duty.getName()  + ",  quantita': " + quantity +", tempo stimato: " + estTime + pronto + turno;
 
 
        } else if (cook != null) {
            System.out.println("Caso 5");
 
-             return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() +  ", " + pronto;
+             return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName()  + pronto + turno;
 
          } else if (estTime != null){
            System.out.println("Caso 6");
-             return "Ricetta: "+duty.getName() +", tempo stimato: " + estTime + ", " + pronto;
+             return "Ricetta: "+duty.getName() +", tempo stimato: " + estTime  + pronto + turno;
 
 
        } else if (quantity != null){
            System.out.println("Caso 7");
-             return "Ricetta: "+duty.getName() + ",  quantita': " + quantity + ", " + pronto;
+             return "Ricetta: "+duty.getName() + ",  quantita': " + quantity  + pronto + turno;
 
 
        } else
-             return "Ricetta: "+duty.getName() + ", " + pronto;
+             return "Ricetta: "+duty.getName() +pronto+turno;
     }
 
     public Assignment define(Shift s, User cook, String estTime, String quantity) {
