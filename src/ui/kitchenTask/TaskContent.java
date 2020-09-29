@@ -66,6 +66,7 @@ public class TaskContent {
         assignmentList.setItems(FXCollections.emptyObservableList());
 
         assignmentList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        System.out.println("");
         assignmentList.getSelectionModel().select(null);
         assignmentList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Assignment>() {
             @Override
