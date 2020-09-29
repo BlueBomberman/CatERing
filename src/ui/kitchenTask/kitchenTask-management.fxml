@@ -2,17 +2,28 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="containerPane" prefHeight="702.0" prefWidth="1140.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.KitchenTaskManagement">
-   <top>
-      <Label fx:id="userLabel" prefHeight="46.0" prefWidth="1154.0" text="User Info" BorderPane.alignment="CENTER">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-   </top>
+<BorderPane fx:id="containerPane" prefHeight="600.0" prefWidth="846.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.KitchenTaskManagement">
    <center>
       <fx:include fx:id="serviceList" source="service-list.fxml" />
    </center>
+   <top>
+      <FlowPane alignment="TOP_CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="130.0" prefWidth="1140.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text fill="#02c7ba" stroke="#228681" strokeType="OUTSIDE" strokeWidth="2.0" text="Cat&amp;Ring" wrappingWidth="217.751953125">
+               <font>
+                  <Font name="Apple Color Emoji" size="50.0" />
+               </font>
+            </Text>
+            <Label fx:id="userLabel" prefHeight="31.0" prefWidth="216.0" text="User Info">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </FlowPane>
+   </top>
 </BorderPane>

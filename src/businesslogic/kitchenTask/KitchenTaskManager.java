@@ -77,6 +77,8 @@ public class KitchenTaskManager {
     //dsd5b TODO: magari cambiamo e mettiamo una checkbox in modo da poter rimettere ready = false
     public void setAssignmentReady(Assignment as) {
         as.setReady(true);
+        as.setCook(null);
+        as.setShift(null);
         this.notifyAssignmentReady(as);
     }
 

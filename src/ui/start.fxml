@@ -1,32 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.AmbientLight?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.effect.PerspectiveTransform?>
-<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<FlowPane alignment="CENTER" columnHalignment="CENTER" orientation="VERTICAL" prefHeight="408.0" prefWidth="679.0" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Star">
+
+<GridPane prefHeight="504.0" prefWidth="854.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.Star">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="10.0" prefWidth="38.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="554.0" minWidth="10.0" prefWidth="529.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="206.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="243.0" minHeight="10.0" prefHeight="243.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="192.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="193.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="300.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="357.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <AmbientLight color="CHARTREUSE" lightOn="true">
-         <effect>
-            <PerspectiveTransform />
-         </effect>
-      </AmbientLight>
-      <Button mnemonicParsing="false" onAction="#beginMenuManagement" text="Gestire menu">
+      <Text fill="#02c7ba" stroke="#0a8373" strokeType="OUTSIDE" strokeWidth="2.0" text="Cat&amp;Ring" textAlignment="CENTER" GridPane.columnIndex="1">
+         <font>
+            <Font name="AppleGothic Regular" size="80.0" />
+         </font>
+      </Text>
+      <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#beginMenuManagement" prefHeight="29.0" prefWidth="147.0" style="-fx-background-color: #02c7ba#02c7ba;" text="Gestione Menu" textAlignment="CENTER" textFill="#fcfcfc" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" onAction="#beginKitchenTaskManagement" text="Compiti della cucina">
+      <Button mnemonicParsing="false" onAction="#beginKitchenTaskManagement" style="-fx-background-color: #02c7ba#02c7ba;" text="Compiti della cucina" textFill="#f5f5f5" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
-      <Button mnemonicParsing="false" text="...to do">
+      <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="146.0" style="-fx-background-color: #02c7ba#02c7ba;" text="...to do" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
+      <ImageView fitHeight="237.0" fitWidth="333.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+         <image>
+            <Image url="@../catering.png" />
+         </image>
+      </ImageView>
    </children>
-</FlowPane>
+</GridPane>

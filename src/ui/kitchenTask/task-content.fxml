@@ -8,15 +8,16 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="609.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.TaskContent">
+<BorderPane prefHeight="609.0" prefWidth="1000.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.kitchenTask.TaskContent">
    <center>
-      <ListView fx:id="assignmentList" prefHeight="332.0" prefWidth="758.0" BorderPane.alignment="CENTER" />
+      <ListView fx:id="assignmentList" prefHeight="452.0" prefWidth="833.0" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <GridPane prefHeight="107.0" prefWidth="758.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight="107.0" prefWidth="758.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -25,29 +26,29 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <FlowPane alignment="CENTER" hgap="10.0" prefHeight="86.0" prefWidth="758.0" style="-fx-border-color: #aaaaaa; -fx-border-width: 1;">
+            <FlowPane alignment="CENTER" hgap="10.0" prefHeight="86.0" prefWidth="758.0" style="-fx-border-color: #02c7ba#02c7ba; -fx-border-width: 1;">
                <children>
-                  <Button mnemonicParsing="false" onAction="#addButtonPressed" text="+">
+                  <Button mnemonicParsing="false" onAction="#addButtonPressed" style="-fx-background-color: #02c7ba#02c7ba;" text="+" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="removeButton" mnemonicParsing="false" onAction="#deleteAssignmentPressed" text="-">
+                  <Button fx:id="removeButton" mnemonicParsing="false" onAction="#deleteAssignmentPressed" style="-fx-background-color: #02c7ba#02c7ba;" text="-" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="upButton" mnemonicParsing="false" onAction="#upAssPressed" text="Up">
+                  <Button fx:id="upButton" mnemonicParsing="false" onAction="#upAssPressed" style="-fx-background-color: #02c7ba#02c7ba;" text="Up" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="downButton" mnemonicParsing="false" onAction="#downAssPressed" text="Down">
+                  <Button fx:id="downButton" mnemonicParsing="false" onAction="#downAssPressed" style="-fx-background-color: #02c7ba#02c7ba;" text="Down" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="readyButton" mnemonicParsing="false" onAction="#readyButtonPressed" text="Ready">
+                  <Button fx:id="readyButton" mnemonicParsing="false" onAction="#readyButtonPressed" style="-fx-background-color: #02c7ba#02c7ba;" text="Ready" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -59,12 +60,12 @@
             </FlowPane>
             <FlowPane alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #aaaaaa; -fx-border-width: 1;" GridPane.rowIndex="1">
                <children>
-                  <Button fx:id="modificaButton" mnemonicParsing="false" onAction="#modificaButtonPressed" text="Modifica compito">
+                  <Button fx:id="modificaButton" mnemonicParsing="false" onAction="#modificaButtonPressed" style="-fx-background-color: #02c7ba#02c7ba;" text="Modifica compito" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#fineButtonPressed" prefHeight="29.0" prefWidth="119.0" text="Fine">
+                  <Button mnemonicParsing="false" onAction="#fineButtonPressed" prefHeight="29.0" prefWidth="119.0" style="-fx-background-color: #02c7ba#02c7ba;" text="Fine" textFill="WHITE">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -77,12 +78,12 @@
    <top>
       <FlowPane hgap="50.0" prefHeight="28.0" prefWidth="758.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="eventServiceLabel" prefHeight="50.0" prefWidth="699.0" text="Evento x, Servizio y">
+            <Label fx:id="eventServiceLabel" prefHeight="50.0" prefWidth="699.0" text="Evento">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Apple SD Gothic Neo Regular" size="20.0" />
                </font>
             </Label>
-            <Button mnemonicParsing="false" onAction="#tabelloneTurniPressed" text="Tabellone Turni">
+            <Button mnemonicParsing="false" onAction="#tabelloneTurniPressed" style="-fx-background-color: #02c7ba#02c7ba;" text="Tabellone Turni" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -90,4 +91,10 @@
          </children>
       </FlowPane>
    </top>
+   <right>
+      <Pane prefHeight="452.0" prefWidth="75.0" style="-fx-background-color: #02c7ba#02c7ba;" BorderPane.alignment="CENTER" />
+   </right>
+   <left>
+      <Pane prefHeight="452.0" prefWidth="75.0" style="-fx-background-color: #02c7ba#02c7ba;" BorderPane.alignment="CENTER" />
+   </left>
 </BorderPane>

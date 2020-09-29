@@ -4,10 +4,7 @@ import businesslogic.CatERing;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
 import ui.kitchenTask.KitchenTaskManagement;
 import ui.menu.MenuManagement;
 
@@ -19,7 +16,7 @@ public class Main {
     AnchorPane paneContainer;
 
     @FXML
-    FlowPane startPane;
+    GridPane startPane;
 
     @FXML
     Star startPaneController;

@@ -39,7 +39,7 @@ public class KitchenTaskManagement {
         serviceListController.setParent(this);
 
         if (CatERing.getInstance().getUserManager().getCurrentUser() != null) {
-            String uname = CatERing.getInstance().getUserManager().getCurrentUser().getUserName();
+            String uname = "Login: " + CatERing.getInstance().getUserManager().getCurrentUser().getUserName();
             userLabel.setText(uname);
         }
 
