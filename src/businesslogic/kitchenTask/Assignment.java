@@ -68,6 +68,7 @@ public class Assignment {
 
                 Assignment as = new Assignment(r);
                 as.setId(rs.getInt("a.id"));
+                if(rs.getInt("id_cook")!=0)
                 as.setCook(User.loadUserById(rs.getInt("id_cook")));
                 as.setEstTime(rs.getString("estTime"));
                 as.setQuantity(rs.getString("quantity"));
@@ -236,7 +237,50 @@ public class Assignment {
     }
 
     public String toString() {
-        return duty.getName();
+        //DEVO STAMPARE: nome ricetta, cuoco, pronto, quantità, estTime
+        String pronto = "";
+        if(ready)
+            pronto = "la mansione è già pronta!";
+         if(cook != null &&  estTime != null && quantity != null){
+           System.out.println("Caso 1");
+
+           return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ",  quantita': " + quantity +", tempo stimato: " + estTime + ", " + pronto;
+
+       } else if(cook != null && estTime != null){
+           System.out.println("Caso 2");
+
+             return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ", tempo stimato: " + estTime + ", " + pronto;
+
+
+       } else if ( cook != null && quantity != null){
+           System.out.println("Caso 3");
+
+           return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() + ",  quantita': " + quantity  + ", " + pronto;
+
+
+       } else if (quantity != null && estTime != null){
+           System.out.println("Caso 4");
+
+             return "Ricetta: "+duty.getName()  + ",  quantita': " + quantity +", tempo stimato: " + estTime + ", " + pronto;
+
+
+       } else if (cook != null) {
+           System.out.println("Caso 5");
+
+             return "Ricetta: "+duty.getName() +", Cuoco: " + cook.getUserName() +  ", " + pronto;
+
+         } else if (estTime != null){
+           System.out.println("Caso 6");
+             return "Ricetta: "+duty.getName() +", tempo stimato: " + estTime + ", " + pronto;
+
+
+       } else if (quantity != null){
+           System.out.println("Caso 7");
+             return "Ricetta: "+duty.getName() + ",  quantita': " + quantity + ", " + pronto;
+
+
+       } else
+             return "Ricetta: "+duty.getName() + ", " + pronto;
     }
 
     public Assignment define(Shift s, User cook, String estTime, String quantity) {

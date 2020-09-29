@@ -14,4 +14,8 @@ public class ShiftManager {
     public ObservableList<User> getCooks(int id) {
         return FXCollections.unmodifiableObservableList(Shift.getShiftCooks(id));
     }
+
+    public ObservableList<Shift> getOpenShifts(int id) {
+        return FXCollections.unmodifiableObservableList(Shift.getOpenShifts(id));
+    }
 }

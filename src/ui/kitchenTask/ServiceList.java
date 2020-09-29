@@ -114,6 +114,11 @@ public class ServiceList {
 
     @FXML
     public void fineButtonPressed() {
-        kitchenTaskManagmentController.endMenuManagement();
+        kitchenTaskManagmentController.endKitchenTaskManagement();
+    }
+
+
+    public void showKitchenTaskPane() {
+
     }
 }

@@ -68,7 +68,12 @@ public class KitchenTaskManagement {
         serviceListController.setEventList();
     }
 
-    public void endMenuManagement() {
+    public void endKitchenTaskManagement() {
         mainPaneController.showStartPane();
+    }
+
+
+    public void backKitchenTaskManagement() {
+        containerPane.setCenter(serviceList);
     }
 }

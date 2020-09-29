@@ -10,6 +10,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class ServiceInfo implements EventItemInfo {
     private int id;
@@ -26,7 +28,16 @@ public class ServiceInfo implements EventItemInfo {
 
 
     public String toString() {
-        return name + ": " + date + " (" + timeStart + "-" + timeEnd + "), " + participants + " pp.";
+        SimpleDateFormat sdf = new SimpleDateFormat("HH:MM");
+        String timeStart1 = sdf.format(timeStart);
+        String timeEnd1 = sdf.format(timeEnd);
+        String date1 = null;
+        try {
+            date1 = EventInfo.dateFormat(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return name + ": " + date1 + " (" + timeStart1 + "-" + timeEnd1 + "), " + participants + " partecipanti.";
     }
 
     // STATIC METHODS FOR PERSISTENCE

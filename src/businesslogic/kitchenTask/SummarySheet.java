@@ -8,6 +8,7 @@ import businesslogic.menu.Section;
 import businesslogic.recipe.KitchenDuty;
 import businesslogic.recipe.Recipe;
 import businesslogic.shift.Shift;
+import businesslogic.shift.ShiftManager;
 import businesslogic.user.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -140,15 +141,16 @@ public class SummarySheet {
 
                 Assignment as = new Assignment(r);
                 as.setId(rs.getInt("a.id"));
-                as.setCook(User.loadUserById(rs.getInt("id_cook")));
+                if(rs.getInt("id_cook") != 0)
+                    as.setCook(User.loadUserById(rs.getInt("id_cook")));
                 as.setEstTime(rs.getString("estTime"));
                 as.setQuantity(rs.getString("quantity"));
                 as.setReady(rs.getBoolean("ready"));
                 as.setPosition(rs.getInt("position"));
-
-               // as.setShift("id_shift"); //TODO: Fare object di shift
-
-
+                if(rs.getInt("id_shift") != 0){
+                    Shift s = Shift.loadShiftById(rs.getInt("id_shift")) ;
+                    as.setShift(s);
+                }
                 assignments.add(as);
 
             }

@@ -1,6 +1,7 @@
 package ui.kitchenTask;
 
 import businesslogic.CatERing;
+import businesslogic.kitchenTask.Assignment;
 import businesslogic.recipe.Recipe;
 import businesslogic.shift.Shift;
 import businesslogic.user.User;
@@ -39,14 +40,33 @@ public class ModificaAssignmentDialog {
     private boolean confirmed;
 
     public void initialize() {
-        shiftCombo.setItems(FXCollections.emptyObservableList());
-        cookCombo.setItems(FXCollections.emptyObservableList());
+        //shiftCombo.setItems(FXCollections.emptyObservableList());
+        //cookCombo.setItems(FXCollections.emptyObservableList());
         confirmed = false;
     }
 
-    public void init(){
+    public void init(Assignment assignment){
         int ser_id = CatERing.getInstance().getTaskMgr().getCurrentSheet().getService().getId();
-        shiftCombo.setItems(CatERing.getInstance().getShiftManager().getShifts(ser_id));
+        shiftCombo.setItems(CatERing.getInstance().getShiftManager().getOpenShifts(ser_id));
+        if(assignment.getShift()!= null) {
+            shiftCombo.setValue(assignment.getShift());
+            cookCombo.setDisable(false);
+            estTimeField.setDisable(false);
+            quantityField.setDisable(false);
+            saveButton.setDisable(false);
+
+
+        }
+        if(assignment.getCook()!= null) {
+            cookCombo.setValue(assignment.getCook());
+        }
+        if(assignment.getEstTime()!= null) {
+            estTimeField.setText(assignment.getEstTime());
+        }
+        if(assignment.getQuantity()!= null) {
+            quantityField.setText(assignment.getQuantity());
+        }
+
     }
 
     @FXML
@@ -101,5 +121,9 @@ public class ModificaAssignmentDialog {
     public String getInsQuantity() {
         if (!confirmed || insQuantity.equals("")) insQuantity = null;
         return insQuantity;
+    }
+
+    public boolean getConfirmed(){
+        return confirmed;
     }
 }

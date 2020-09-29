@@ -10,6 +10,8 @@ import persistence.ResultHandler;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 public class EventInfo implements EventItemInfo {
@@ -36,7 +38,42 @@ public class EventInfo implements EventItemInfo {
     }
 
     public String toString() {
-        return name + ": " + dateStart + "-" + dateEnd + ", " + participants + " pp. (" + organizer.getUserName() + ")";
+        String end = null;
+        String start = null;
+        try {
+             start = dateFormat(dateStart);
+
+            end = dateFormat(dateEnd);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(end != null && end.equals(start)){
+            return name + ": il giorno " + end + ", numero di partecipanti: " + participants + " ( organizzatore: " + organizer.getUserName() + ")";
+
+        }else {
+
+            return name + ": dal " + start + " al " + end + ", numero di partecipanti: " + participants + "  ( organizzatore: " + organizer.getUserName() + ")";
+        }
+    }
+
+    public static String dateFormat(Date date) throws ParseException {
+        final String OLD_FORMAT = "yyyy-MM-dd";
+        final String NEW_FORMAT = "dd/MM/yyyy";
+
+// August 12, 2010
+        System.out.println("Data inizio: " + date);
+        String oldDateString = date.toString();
+        System.out.println("Data Stringa: " + oldDateString);
+
+        String newDateString;
+
+        SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+        java.util.Date d =  sdf.parse(oldDateString);
+        System.out.println("data parsificata: " + d);
+        sdf.applyPattern(NEW_FORMAT);
+        newDateString = sdf.format(d);
+        System.out.println("Data finale: "+newDateString );
+        return newDateString;
     }
 
     // STATIC METHODS FOR PERSISTENCE

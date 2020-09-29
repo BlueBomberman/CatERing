@@ -64,6 +64,11 @@
                         <Font size="15.0" />
                      </font>
                   </Button>
+                  <Button mnemonicParsing="false" onAction="#fineButtonPressed" prefHeight="29.0" prefWidth="119.0" text="Fine">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
                </children>
             </FlowPane>
          </children>

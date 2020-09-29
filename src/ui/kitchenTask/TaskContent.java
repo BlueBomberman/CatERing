@@ -3,7 +3,9 @@ package ui.kitchenTask;
 import businesslogic.CatERing;
 import businesslogic.UseCaseLogicException;
 import businesslogic.event.EventInfo;
+import businesslogic.event.ServiceInfo;
 import businesslogic.kitchenTask.Assignment;
+import businesslogic.kitchenTask.KitchenTaskException;
 import businesslogic.kitchenTask.SummarySheet;
 import businesslogic.menu.MenuItem;
 import businesslogic.menu.Section;
@@ -123,6 +125,11 @@ public class TaskContent {
     }
 
     @FXML
+    public void fineButtonPressed(){
+        KitchenTaskManagmentPaneController.backKitchenTaskManagement();
+    }
+
+    @FXML
     public void deleteAssignmentPressed() {
         Assignment as = assignmentList.getSelectionModel().getSelectedItem();
         CatERing.getInstance().getTaskMgr().deleteAssignment(as);
@@ -195,11 +202,13 @@ public class TaskContent {
 
             Stage stage = new Stage();
 
+            Assignment selAssignment = assignmentList.getSelectionModel().getSelectedItem();
+
+
             controller.setOwnStage(stage);
-            controller.init();
+            controller.init(selAssignment);
 
             stage.initModality(Modality.APPLICATION_MODAL);
-            Assignment selAssignment = assignmentList.getSelectionModel().getSelectedItem();
             stage.setTitle("Modifica Assegnamento per ricetta " + selAssignment.getDuty().getName());
             stage.setScene(new Scene(pane));
 
@@ -210,7 +219,7 @@ public class TaskContent {
             String insEstTime = controller.getInsEstTime();
             String insQuantity = controller.getInsQuantity();
             //System.out.println(chosenShift +", " + chosenCook + ", " + insEstTime + ", " + insQuantity);
-
+            if(controller.getConfirmed())
             CatERing.getInstance().getTaskMgr().defineAssignment(selAssignment,chosenShift,chosenCook,insQuantity,insEstTime);
 
         } catch (IOException ex) {
