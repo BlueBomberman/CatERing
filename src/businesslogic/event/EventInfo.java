@@ -110,7 +110,7 @@ public class EventInfo implements EventItemInfo {
         //int uid = CatERing.getInstance().getUserManager().getCurrentUser().getId();
         System.out.println("User id: "+ uid);
 
-        String query = "SELECT * FROM Events WHERE id = "+ uid;
+        String query = "SELECT * FROM Events WHERE chef_id = "+ uid;
         PersistenceManager.executeQuery(query, new ResultHandler() {
             @Override
             public void handle(ResultSet rs) throws SQLException {

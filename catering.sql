@@ -1,26 +1,51 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Sep 28, 2020 at 08:52 AM
--- Server version: 5.7.24
--- PHP Version: 7.2.14
+-- Host: localhost:8889
+-- Generation Time: Sep 29, 2020 at 02:50 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `catering`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `assignedshifts`
+--
+
+CREATE TABLE `assignedshifts` (
+  `id_user` int(11) NOT NULL,
+  `id_shift` int(11) NOT NULL,
+  `role` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `assignedshifts`
+--
+
+INSERT INTO `assignedshifts` (`id_user`, `id_shift`, `role`) VALUES
+(4, 4, ''),
+(4, 5, ''),
+(4, 6, ''),
+(4, 7, ''),
+(5, 10, ''),
+(5, 11, ''),
+(5, 12, ''),
+(5, 13, ''),
+(6, 6, ''),
+(6, 7, ''),
+(6, 8, ''),
+(6, 9, ''),
+(7, 5, ''),
+(7, 6, ''),
+(7, 7, '');
 
 -- --------------------------------------------------------
 
@@ -45,77 +70,18 @@ CREATE TABLE `assignments` (
 --
 
 INSERT INTO `assignments` (`id`, `ready`, `estTime`, `quantity`, `id_cook`, `id_shift`, `id_duty`, `id_sheet`, `position`) VALUES
-(1, 0, NULL, NULL, NULL, NULL, 9, 4, 0),
-(2, 0, NULL, NULL, NULL, NULL, 9, 4, 1),
-(3, 0, NULL, NULL, NULL, NULL, 10, 4, 2),
-(4, 0, NULL, NULL, NULL, NULL, 11, 4, 3),
-(5, 0, NULL, NULL, NULL, NULL, 12, 4, 4),
-(6, 0, NULL, NULL, NULL, NULL, 12, 4, 5),
-(7, 0, NULL, NULL, NULL, NULL, 12, 4, 6),
-(8, 0, NULL, NULL, NULL, NULL, 9, 5, 0),
-(9, 0, NULL, NULL, NULL, NULL, 9, 5, 1),
-(10, 0, NULL, NULL, NULL, NULL, 10, 5, 2),
-(11, 0, NULL, NULL, NULL, NULL, 11, 5, 3),
-(12, 0, NULL, NULL, NULL, NULL, 12, 5, 5),
-(13, 0, NULL, NULL, NULL, NULL, 12, 5, 6),
-(14, 0, NULL, NULL, NULL, NULL, 12, 5, 7),
-(15, 0, NULL, NULL, NULL, NULL, 1, 6, 1),
-(16, 0, NULL, NULL, NULL, NULL, 6, 6, 1),
-(17, 0, NULL, NULL, NULL, NULL, 6, 5, 8),
-(18, 0, NULL, NULL, NULL, NULL, 2, 5, 9),
-(24, 0, NULL, NULL, NULL, NULL, 9, 8, 0),
-(25, 0, NULL, NULL, NULL, NULL, 9, 8, 1),
-(26, 0, NULL, NULL, NULL, NULL, 10, 8, 2),
-(27, 0, NULL, NULL, NULL, NULL, 11, 8, 3),
-(28, 0, NULL, NULL, NULL, NULL, 12, 8, 5),
-(29, 0, NULL, NULL, NULL, NULL, 12, 8, 6),
-(30, 0, NULL, NULL, NULL, NULL, 12, 8, 7),
-(31, 0, NULL, NULL, NULL, NULL, 2, 8, 4),
-(32, 0, NULL, NULL, NULL, NULL, 4, 0, 1),
-(33, 0, NULL, NULL, NULL, NULL, 1, 9, 0),
-(34, 0, NULL, NULL, NULL, NULL, 2, 9, 3),
-(35, 1, NULL, NULL, NULL, NULL, 3, 9, 7),
-(36, 0, NULL, NULL, NULL, NULL, 5, 9, 8),
-(37, 0, NULL, NULL, NULL, NULL, 20, 9, 2),
-(38, 0, NULL, NULL, NULL, NULL, 8, 9, 5),
-(39, 0, NULL, NULL, NULL, NULL, 18, 9, 6),
-(40, 0, NULL, NULL, NULL, NULL, 19, 9, 1),
-(41, 0, NULL, NULL, NULL, NULL, 9, 0, 9),
-(42, 0, NULL, NULL, NULL, NULL, 5, 0, 9),
-(43, 0, NULL, NULL, NULL, NULL, 6, 0, 9);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `asssignedshifts`
---
-
-CREATE TABLE `asssignedshifts` (
-  `id_user` int(11) NOT NULL,
-  `id_shift` int(11) NOT NULL,
-  `role` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `asssignedshifts`
---
-
-INSERT INTO `asssignedshifts` (`id_user`, `id_shift`, `role`) VALUES
-(4, 4, ''),
-(4, 5, ''),
-(4, 6, ''),
-(4, 7, ''),
-(5, 10, ''),
-(5, 11, ''),
-(5, 12, ''),
-(5, 13, ''),
-(6, 6, ''),
-(6, 7, ''),
-(6, 8, ''),
-(6, 9, ''),
-(7, 5, ''),
-(7, 6, ''),
-(7, 7, '');
+(58, 0, NULL, NULL, NULL, NULL, 9, 11, 1),
+(59, 0, NULL, NULL, NULL, NULL, 10, 11, 2),
+(60, 0, NULL, NULL, NULL, NULL, 11, 11, 3),
+(63, 0, NULL, NULL, NULL, NULL, 12, 11, 6),
+(64, 0, NULL, NULL, NULL, NULL, 1, 12, 0),
+(65, 0, NULL, NULL, NULL, NULL, 2, 12, 1),
+(66, 0, NULL, NULL, NULL, NULL, 3, 12, 2),
+(67, 0, NULL, NULL, NULL, NULL, 5, 12, 3),
+(68, 0, NULL, NULL, NULL, NULL, 20, 12, 4),
+(69, 0, NULL, NULL, NULL, NULL, 8, 12, 5),
+(70, 0, NULL, NULL, NULL, NULL, 18, 12, 6),
+(71, 0, NULL, NULL, NULL, NULL, 19, 12, 7);
 
 -- --------------------------------------------------------
 
@@ -183,7 +149,22 @@ INSERT INTO `menufeatures` (`menu_id`, `name`, `value`) VALUES
 (91, 'Buffet', 0),
 (91, 'Richiede cucina', 0),
 (91, 'Finger food', 0),
-(91, 'Piatti caldi', 0);
+(91, 'Piatti caldi', 0),
+(92, 'Richiede cuoco', 0),
+(92, 'Buffet', 0),
+(92, 'Richiede cucina', 0),
+(92, 'Finger food', 0),
+(92, 'Piatti caldi', 0),
+(93, 'Richiede cuoco', 0),
+(93, 'Buffet', 0),
+(93, 'Richiede cucina', 0),
+(93, 'Finger food', 0),
+(93, 'Piatti caldi', 0),
+(94, 'Richiede cuoco', 0),
+(94, 'Buffet', 0),
+(94, 'Richiede cucina', 0),
+(94, 'Finger food', 0),
+(94, 'Piatti caldi', 0);
 
 -- --------------------------------------------------------
 
@@ -228,7 +209,15 @@ INSERT INTO `menuitems` (`id`, `menu_id`, `section_id`, `description`, `recipe_i
 (118, 86, 44, 'Sorbetto al limone', 18, 0),
 (119, 86, 44, 'Torta Saint Honoré', 19, 1),
 (121, 91, 45, 'Insalata di riso', 4, 0),
-(122, 91, 45, 'Hamburger con bacon e cipolla caramellata', 7, 1);
+(122, 91, 45, 'Hamburger con bacon e cipolla caramellata', 7, 1),
+(123, 92, 0, 'Biscotti', 13, 0),
+(124, 92, 0, 'Lingue di gatto', 14, 1),
+(125, 92, 0, 'Bigné alla crema', 15, 2),
+(126, 92, 0, 'Bigné al caffè', 15, 3),
+(127, 92, 0, 'Pizzette', 16, 4),
+(128, 92, 0, 'Croissant al prosciutto crudo mignon', 9, 5),
+(129, 92, 0, 'Tramezzini tonno e carciofini mignon', 17, 6),
+(130, 94, 47, 'Papapapa', 6, 0);
 
 -- --------------------------------------------------------
 
@@ -252,7 +241,10 @@ INSERT INTO `menus` (`id`, `title`, `owner_id`, `published`) VALUES
 (82, 'Coffee break pomeridiano', 2, 1),
 (86, 'Cena di compleanno pesce', 3, 1),
 (88, 'CIccio', 2, 0),
-(91, 'Criste', 2, 0);
+(91, 'Criste', 2, 0),
+(92, 'Coffee break pomeridiano', 2, 0),
+(93, 'Menu', 2, 0),
+(94, ' Menu1', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -277,7 +269,8 @@ INSERT INTO `menusections` (`id`, `menu_id`, `name`, `position`) VALUES
 (43, 86, 'Secondi', 2),
 (44, 86, 'Dessert', 3),
 (45, 91, 'asduf has', 0),
-(46, 91, 'asd fjasdpof j', 1);
+(46, 91, 'asd fjasdpof j', 1),
+(47, 94, 'Sezione1', 0);
 
 -- --------------------------------------------------------
 
@@ -392,14 +385,14 @@ INSERT INTO `shifts` (`id`, `id_service`, `startTime`, `endTime`, `closed`) VALU
 (2, 2, '2020-09-27 10:00:00', '2020-09-27 12:00:00', 0),
 (3, 2, '2020-09-27 10:00:00', '2020-09-27 12:00:00', 0),
 (4, 3, '2020-09-10 05:00:00', '2020-09-27 13:00:00', 0),
-(5, 1, '2020-09-10 22:00:00', '2020-09-18 22:00:00', 0),
+(5, 1, '2020-09-11 14:00:00', '2020-09-19 21:00:00', 0),
 (6, 1, '2020-09-18 02:00:00', '2020-09-18 13:00:00', 0),
-(7, 1, '2020-09-24 04:00:00', '2020-09-24 10:00:00', 0),
-(8, 1, '2020-09-10 04:00:00', '2020-09-10 12:00:00', 0),
-(9, 1, '2020-09-30 08:00:00', '2020-09-30 16:00:00', 0),
-(10, 1, '2020-10-15 22:00:00', '2020-10-16 09:00:00', 0),
-(11, 1, '2020-09-10 04:00:00', '2020-09-10 12:00:00', 0),
-(12, 1, '2020-09-30 08:00:00', '2020-09-30 16:00:00', 0),
+(7, 4, '2020-09-24 04:00:00', '2020-09-24 10:00:00', 0),
+(8, 4, '2020-09-10 04:00:00', '2020-09-10 12:00:00', 0),
+(9, 5, '2020-09-30 08:00:00', '2020-09-30 16:00:00', 0),
+(10, 5, '2020-10-15 22:00:00', '2020-10-16 09:00:00', 0),
+(11, 4, '2020-09-10 04:00:00', '2020-09-10 12:00:00', 0),
+(12, 3, '2020-09-30 08:00:00', '2020-09-30 16:00:00', 0),
 (13, 1, '2020-10-15 22:00:00', '2020-10-16 09:00:00', 0);
 
 -- --------------------------------------------------------
@@ -418,10 +411,8 @@ CREATE TABLE `summarysheet` (
 --
 
 INSERT INTO `summarysheet` (`id`, `id_service`) VALUES
-(4, 3),
-(6, 5),
-(8, 2),
-(9, 1);
+(11, 2),
+(12, 1);
 
 -- --------------------------------------------------------
 
@@ -485,16 +476,16 @@ INSERT INTO `users` (`id`, `username`) VALUES
 --
 
 --
+-- Indexes for table `assignedshifts`
+--
+ALTER TABLE `assignedshifts`
+  ADD PRIMARY KEY (`id_user`,`id_shift`);
+
+--
 -- Indexes for table `assignments`
 --
 ALTER TABLE `assignments`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `asssignedshifts`
---
-ALTER TABLE `asssignedshifts`
-  ADD PRIMARY KEY (`id_user`,`id_shift`);
 
 --
 -- Indexes for table `events`
@@ -564,7 +555,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `assignments`
 --
 ALTER TABLE `assignments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- AUTO_INCREMENT for table `events`
@@ -576,19 +567,19 @@ ALTER TABLE `events`
 -- AUTO_INCREMENT for table `menuitems`
 --
 ALTER TABLE `menuitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `menus`
 --
 ALTER TABLE `menus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `menusections`
 --
 ALTER TABLE `menusections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `recipes`
@@ -612,15 +603,10 @@ ALTER TABLE `shifts`
 -- AUTO_INCREMENT for table `summarysheet`
 --
 ALTER TABLE `summarysheet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

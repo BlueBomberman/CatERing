@@ -235,7 +235,7 @@ public class Assignment {
     }
 
     public static void saveReady(Assignment as) {
-        String itemdel = "UPDATE Assignments SET ready=1, id_cook=NULL, id_shift=NULL,estTime=NULL  WHERE id = " + as.getId();
+        String itemdel = "UPDATE Assignments SET ready="+ as.ready+", id_cook=NULL, id_shift=NULL,estTime=NULL  WHERE id = " + as.getId();
         PersistenceManager.executeUpdate(itemdel);
     }
 
