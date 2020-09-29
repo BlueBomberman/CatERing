@@ -86,7 +86,10 @@ public class Assignment {
 
         String itemdel = "";
         int idShift = as.getShift().getId();
-        int idCook = as.getCook().getId();
+        User cook = as.getCook();
+        int idCook =0;
+        if(cook!= null)
+        idCook = cook.getId();
         String estTime = as.getEstTime();
         String quantity = as.getQuantity();
 

@@ -75,8 +75,13 @@ public class TaskContent {
                     // enable other Assignment actions
 
                     removeButton.setDisable(false);
-                    readyButton.setDisable(newAssignment.isReady());
-                    modificaButton.setDisable(newAssignment.isReady()   );
+                    readyButton.setDisable(false);
+                    if(newAssignment.isReady()) {
+                        readyButton.setText("Not Ready");
+                    }else {
+                        readyButton.setText("Ready");
+                    }
+                    modificaButton.setDisable(newAssignment.isReady());
                     int pos = assignmentList.getSelectionModel().getSelectedIndex();
                     upButton.setDisable(pos <= 0);
                     downButton.setDisable(pos >= (CatERing.getInstance().getTaskMgr().getCurrentSheet().getAssignments().size()-1));
@@ -139,7 +144,8 @@ public class TaskContent {
     @FXML
     public void readyButtonPressed(){
         Assignment as = assignmentList.getSelectionModel().getSelectedItem();
-        CatERing.getInstance().getTaskMgr().setAssignmentReady(as);
+        String action = readyButton.getText();
+        CatERing.getInstance().getTaskMgr().setAssignmentReady(as,action);
         initialize();
         init();
 
