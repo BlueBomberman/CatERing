@@ -11,6 +11,7 @@ import persistence.PersistenceManager;
 import persistence.ResultHandler;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
@@ -123,7 +124,10 @@ public class Shift {
     }
 
     public String toString() {
-        return "Turno "+id + ": dal "+ startTime.getDay() + "/" + startTime.getMonth()+"/"+ startTime.getYear()+ " alle " + endTime ;
+        final SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        final SimpleDateFormat sdfEnd = new SimpleDateFormat("HH:mm");
+
+        return "Turno "+id + ": il giorno "+ sdf.format(startTime) + " dalle ore "+sdfEnd.format(startTime)+" alle ore " + sdfEnd.format(endTime)+".";
     }
 
     public boolean isClosed() {
